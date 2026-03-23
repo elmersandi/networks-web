@@ -33,78 +33,76 @@ export default function DashboardPage() {
   return (
     <div className="max-w-7xl mx-auto space-y-8">
       <div>
-        <h2 className="text-3xl font-bold text-slate-800">Hola, Administrador</h2>
-        <p className="text-slate-500 mt-1">Este es el resumen de operaciones de N&S Perú hoy.</p>
+        <h2 className="text-3xl font-bold text-gray-900 tracking-tight">Resumen Operativo</h2>
+        <p className="text-gray-500 mt-1 text-sm">Métricas principales de N&S Perú al día de hoy.</p>
       </div>
 
-      {/* TARJETAS DE RESUMEN */}
+      {/* TARJETAS DE RESUMEN - Estilo Flat Corporativo */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div className="bg-white p-6 rounded-xl shadow-sm border border-slate-200 flex items-center gap-4">
-          <div className="w-14 h-14 bg-blue-50 text-blue-600 rounded-lg flex items-center justify-center">
-            <Server size={28} />
-          </div>
+        
+        {/* Tarjeta Azul - Equipos */}
+        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200 border-l-4 border-l-blue-600 flex items-center justify-between">
           <div>
-            <p className="text-sm font-bold text-slate-500 uppercase">Equipos en Almacén</p>
-            <h3 className="text-3xl font-bold text-slate-800">{cargando ? "-" : data.totalEquipos}</h3>
+            <p className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-1">Equipos en Almacén</p>
+            <h3 className="text-3xl font-bold text-gray-900">{cargando ? "-" : data.totalEquipos}</h3>
           </div>
+          <Server size={32} className="text-gray-300" strokeWidth={1.5} />
         </div>
 
-        <div className="bg-white p-6 rounded-xl shadow-sm border border-slate-200 flex items-center gap-4">
-          <div className="w-14 h-14 bg-emerald-50 text-emerald-600 rounded-lg flex items-center justify-center">
-            <Wrench size={28} />
-          </div>
+        {/* Tarjeta Verde - Servicios */}
+        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200 border-l-4 border-l-emerald-600 flex items-center justify-between">
           <div>
-            <p className="text-sm font-bold text-slate-500 uppercase">Servicios Activos</p>
-            <h3 className="text-3xl font-bold text-slate-800">{cargando ? "-" : data.totalServicios}</h3>
+            <p className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-1">Servicios Activos</p>
+            <h3 className="text-3xl font-bold text-gray-900">{cargando ? "-" : data.totalServicios}</h3>
           </div>
+          <Wrench size={32} className="text-gray-300" strokeWidth={1.5} />
         </div>
 
-        <div className="bg-white p-6 rounded-xl shadow-sm border border-amber-200 flex items-center gap-4 relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-2 h-full bg-amber-400"></div>
-          <div className="w-14 h-14 bg-amber-50 text-amber-600 rounded-lg flex items-center justify-center">
-            <Users size={28} />
-          </div>
+        {/* Tarjeta Amarilla - Prospectos */}
+        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200 border-l-4 border-l-amber-500 flex items-center justify-between">
           <div>
-            <p className="text-sm font-bold text-slate-500 uppercase">Prospectos Nuevos</p>
-            <h3 className="text-3xl font-bold text-slate-800">{cargando ? "-" : data.prospectosNuevos}</h3>
+            <p className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-1">Prospectos Nuevos</p>
+            <h3 className="text-3xl font-bold text-gray-900">{cargando ? "-" : data.prospectosNuevos}</h3>
           </div>
+          <Users size={32} className="text-gray-300" strokeWidth={1.5} />
         </div>
+
       </div>
 
       {/* SECCIÓN DE ACTIVIDAD RECIENTE */}
-      <div className="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
-        <div className="p-6 border-b border-slate-200 flex justify-between items-center">
-          <h3 className="text-lg font-bold text-slate-800 flex items-center gap-2">
-            <Activity size={20} className="text-blue-600" /> Últimos Prospectos Recibidos
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
+        <div className="p-5 border-b border-gray-200 flex justify-between items-center bg-gray-50">
+          <h3 className="text-base font-bold text-gray-900 flex items-center gap-2">
+            <Activity size={18} className="text-gray-500" /> Últimos Prospectos Recibidos
           </h3>
-          <Link href="/admin/prospectos" className="text-sm font-semibold text-blue-600 hover:text-blue-700 flex items-center gap-1">
+          <Link href="/admin/prospectos" className="text-sm font-semibold text-blue-600 hover:text-blue-800 transition-colors flex items-center gap-1">
             Ver todos <ArrowRight size={16} />
           </Link>
         </div>
         <div className="p-0">
           <table className="w-full text-left">
-            <tbody className="divide-y divide-slate-100">
+            <tbody className="divide-y divide-gray-100">
               {cargando ? (
-                <tr><td className="px-6 py-8 text-center text-slate-400">Cargando datos...</td></tr>
+                <tr><td className="px-6 py-8 text-center text-gray-400 text-sm">Cargando datos...</td></tr>
               ) : data.ultimosProspectos.length > 0 ? (
                 data.ultimosProspectos.map((p) => (
-                  <tr key={p.id} className="hover:bg-slate-50 transition-colors">
+                  <tr key={p.id} className="hover:bg-gray-50 transition-colors">
                     <td className="px-6 py-4">
-                      <p className="font-bold text-slate-800">{p.nombre}</p>
-                      <p className="text-sm text-slate-500">{p.email}</p>
+                      <p className="font-semibold text-gray-900 text-sm">{p.nombre}</p>
+                      <p className="text-xs text-gray-500 mt-0.5">{p.email}</p>
                     </td>
-                    <td className="px-6 py-4 text-sm text-slate-600 max-w-md truncate">
+                    <td className="px-6 py-4 text-sm text-gray-600 max-w-md truncate">
                       {p.mensaje}
                     </td>
                     <td className="px-6 py-4 text-right">
-                      <span className="bg-amber-100 text-amber-700 text-xs font-bold px-3 py-1 rounded-full">
+                      <span className="bg-gray-100 border border-gray-200 text-gray-700 text-xs font-bold px-2.5 py-1 rounded">
                         {p.estado}
                       </span>
                     </td>
                   </tr>
                 ))
               ) : (
-                <tr><td className="px-6 py-8 text-center text-slate-500">No hay prospectos recientes.</td></tr>
+                <tr><td className="px-6 py-8 text-center text-gray-500 text-sm">No hay prospectos recientes.</td></tr>
               )}
             </tbody>
           </table>

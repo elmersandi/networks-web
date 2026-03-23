@@ -1,65 +1,67 @@
-import Link from 'next/link';
-import { LayoutDashboard, Server, Tags, Users, Wrench, Settings, LogOut } from 'lucide-react';
+"use client";
 
-export default function AdminLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { LayoutDashboard, Package, Tags, Wrench, Users, Settings, LogOut } from "lucide-react";
+
+export default function AdminLayout({ children }: { children: React.ReactNode }) {
+  const pathname = usePathname();
+
+  const menu = [
+    { name: "Dashboard", icon: LayoutDashboard, path: "/admin" },
+    { name: "Inventario", icon: Package, path: "/admin/inventario" },
+    { name: "Categorías", icon: Tags, path: "/admin/categorias" },
+    { name: "Servicios", icon: Wrench, path: "/admin/servicios" },
+    { name: "Prospectos", icon: Users, path: "/admin/prospectos" },
+    { name: "Ajustes", icon: Settings, path: "/admin/ajustes" },
+  ];
+
   return (
-    <div className="flex min-h-screen bg-slate-50">
-      {/* Menú Lateral (Sidebar) */}
-      <aside className="w-64 bg-slate-900 text-white flex flex-col hidden md:flex">
-        {/* Cabecera del Sidebar */}
-        <div className="h-20 flex items-center justify-center border-b border-slate-800">
-          <div className="text-center">
-            <h1 className="text-xl font-bold">N&S Panel Admin</h1>
-            <p className="text-xs text-slate-400 mt-1">TELECOMUNICACIONES B2B</p>
-          </div>
-        </div>
+    // Aquí usamos un div normal, porque el <html> y <body> ya los pone el RootLayout
+    <div className="flex h-screen bg-gray-50 text-gray-900">
 
-        {/* Enlaces de Navegación */}
-        <nav className="flex-1 px-4 py-6 space-y-2">
-          <Link href="/admin" className="flex items-center gap-3 px-3 py-2 text-slate-300 hover:bg-slate-800 hover:text-white rounded-lg transition-colors">
-            <LayoutDashboard size={20} />
-            Dashboard
-          </Link>
-          <Link href="/admin/inventario" className="flex items-center gap-3 px-3 py-2 text-slate-300 hover:bg-slate-800 hover:text-white rounded-lg transition-colors">
-            <Server size={20} />
-            Inventario
-          </Link>
-          <Link href="/admin/categorias" className="flex items-center gap-3 px-3 py-2 text-slate-300 hover:bg-slate-800 hover:text-white rounded-lg transition-colors">
-            <Tags size={20} />
-            Categorías
-          </Link>
-          <Link href="/admin/servicios" className="flex items-center gap-3 px-3 py-2 text-slate-300 hover:bg-slate-800 hover:text-white rounded-lg transition-colors">
-            <Wrench size={20} />
-            Servicios
-          </Link>
-          <Link href="/admin/prospectos" className="flex items-center gap-3 px-3 py-2 text-slate-300 hover:bg-slate-800 hover:text-white rounded-lg transition-colors">
-            <Users size={20} />
-            Prospectos
-          </Link>
-          <Link href="/admin/ajustes" className="flex items-center gap-3 px-3 py-2 text-slate-300 hover:bg-slate-800 hover:text-white rounded-lg transition-colors">
-            <Settings size={20} />
-            Ajustes
-          </Link>
+      {/* SIDEBAR CORPORATIVO: Negro profundo (neutral-950) */}
+      <aside className="w-64 bg-neutral-950 text-neutral-300 flex flex-col shadow-xl z-10">
+        <div className="p-6 border-b border-neutral-800">
+          {/* Título con colores corporativos universales sólidos (Cero brillo) */}
+          <h1 className="text-2xl font-extrabold tracking-tight flex items-center gap-1">
+            <span className="text-[#1A73E8]">Networks</span> {/* Azul corporativo estándar */}
+            <span className="text-[#E65C00]">Perú</span> {/* Naranja sólido y mate */}
+          </h1>
+          {/* Subtítulo oficial */}
+          <p className="text-[10px] font-bold text-neutral-500 mt-1.5 tracking-widest uppercase">
+            Panel Administrativo
+          </p>
+        </div>
+        <nav className="flex-1 p-4 space-y-1 overflow-y-auto">
+          {menu.map((item) => {
+            const activo = pathname === item.path;
+            return (
+              <Link key={item.name} href={item.path}
+                className={`flex items-center gap-3 px-3 py-2.5 rounded-md text-sm font-medium transition-colors
+                  ${activo
+                    ? "bg-blue-600 text-white shadow-sm"
+                    : "hover:bg-neutral-800 hover:text-white"
+                  }`}
+              >
+                <item.icon size={18} className={activo ? "text-white" : "text-neutral-400"} />
+                {item.name}
+              </Link>
+            );
+          })}
         </nav>
 
-        {/* Botón de Salida */}
-        <div className="p-4 border-t border-slate-800">
-          <button className="flex w-full items-center gap-3 px-3 py-2 text-red-400 hover:bg-slate-800 hover:text-red-300 rounded-lg transition-colors">
-            <LogOut size={20} />
+        <div className="p-4 border-t border-neutral-800">
+          <button className="flex items-center gap-3 px-3 py-2 w-full rounded-md text-sm font-medium text-red-400 hover:bg-neutral-800 hover:text-red-300 transition-colors">
+            <LogOut size={18} />
             Cerrar Sesión
           </button>
         </div>
       </aside>
 
-      {/* Área Principal de Contenido (Aquí cargará el page.tsx) */}
-      <main className="flex-1 flex flex-col">
-        <div className="p-8">
-          {children}
-        </div>
+      {/* ÁREA PRINCIPAL */}
+      <main className="flex-1 overflow-y-auto p-8">
+        {children}
       </main>
     </div>
   );
