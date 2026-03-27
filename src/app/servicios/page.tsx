@@ -1,169 +1,151 @@
 // Archivo: src/app/servicios/page.tsx
 import Navbar from "../../components/Navbar";
-import { Network, Server, ShieldCheck, ArrowRight, CheckCircle2 } from "lucide-react";
+import { Network, Server, ShieldCheck, ArrowRight, Check, Wrench, FileText } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function ServiciosPage() {
   return (
-    <div className="min-h-screen bg-white font-sans selection:bg-[#1A73E8] selection:text-white">
+    <div className="min-h-screen bg-gray-50 font-sans selection:bg-gray-950 selection:text-white">
       
-      {/* NAVEGACIÓN UNIVERSAL */}
+      {/* 1. NAVEGACIÓN UNIVERSAL */}
       <Navbar />
 
-      {/* CABECERA MINIMALISTA Y PESADA */}
-      <header className="bg-white pt-32 pb-16 md:pt-40 md:pb-24 border-b border-gray-100 relative overflow-hidden">
-        {/* Efecto de luz de fondo sutil */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[300px] bg-blue-500/10 blur-[120px] rounded-full pointer-events-none"></div>
-        
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 text-center relative z-10">
-          <h1 className="text-5xl md:text-7xl font-black text-gray-950 tracking-tighter mb-6">
-            Ingeniería que <br className="hidden md:block" />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#1A73E8] to-[#E65C00]">
-              impulsa tu empresa.
-            </span>
-          </h1>
-          <p className="text-xl text-gray-500 max-w-2xl mx-auto font-medium leading-relaxed">
-            No solo instalamos cables; diseñamos ecosistemas tecnológicos robustos para que tu operación en Loreto nunca se detenga.
-          </p>
+      {/* 2. CABECERA CORPORATIVA (Estilo Editorial) */}
+      <header className="bg-white pt-32 pb-20 md:pt-40 md:pb-24 border-b border-gray-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <div className="max-w-3xl">
+            <h1 className="text-sm font-bold text-gray-400 uppercase tracking-widest mb-4">
+              Catálogo de Servicios Integrales
+            </h1>
+            <h2 className="text-5xl md:text-6xl font-black text-gray-950 tracking-tight leading-tight mb-8 text-balance">
+              Infraestructura tecnológica diseñada para la continuidad operativa.
+            </h2>
+            <p className="text-xl text-gray-600 font-medium leading-relaxed max-w-2xl text-pretty">
+              Desarrollamos ecosistemas de red robustos, centros de datos escalables y políticas de seguridad perimetral para empresas que no pueden permitirse tiempos de inactividad en la Amazonía.
+            </p>
+          </div>
         </div>
       </header>
 
       <main className="flex flex-col">
         
-        {/* SERVICIO 1: TEXTO IZQUIERDA / VISUAL DERECHA */}
-        <section className="py-24 border-b border-gray-100 bg-white relative overflow-hidden">
+        {/* 3. BLOQUE DE SERVICIOS (Grid Asimétrico / Bento Box) */}
+        <section className="py-24 bg-gray-50 border-b border-gray-200">
           <div className="max-w-7xl mx-auto px-4 sm:px-6">
-            <div className="flex flex-col lg:flex-row items-center gap-16">
+            
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
               
-              {/* Contenido (Izquierda) */}
-              <div className="w-full lg:w-1/2 space-y-8">
-                <div className="w-16 h-16 bg-blue-50 rounded-2xl flex items-center justify-center border border-blue-100 shadow-sm">
-                  <Network className="text-blue-600" size={32} />
+              {/* SERVICIO 1: Redes y Fibra Óptica (Tarjeta Grande) */}
+              <div className="bg-white p-10 md:p-12 border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
+                <div className="w-14 h-14 bg-gray-950 rounded-none flex items-center justify-center mb-8">
+                  <Network className="text-white" size={28} strokeWidth={1.5} />
                 </div>
-                <h2 className="text-4xl font-extrabold text-gray-900 tracking-tight">
-                  Infraestructura de Redes y Fibra Óptica
-                </h2>
-                <p className="text-lg text-gray-600 leading-relaxed">
-                  Diseñamos e implementamos topologías de red escalables. Desde el tendido de fibra óptica hasta el cableado estructurado bajo normativas internacionales, garantizamos velocidades de transmisión sin cuellos de botella.
+                <h3 className="text-3xl font-black text-gray-950 tracking-tight mb-4">
+                  Cableado Estructurado y Fibra Óptica
+                </h3>
+                <p className="text-base text-gray-600 leading-relaxed mb-8 font-medium">
+                  Diseñamos e implementamos topologías de red escalables. Desde el tendido de fibra óptica multimodo/monomodo hasta el cableado estructurado bajo normativas ANSI/TIA.
                 </p>
-                <ul className="space-y-3">
-                  <li className="flex items-center gap-3 text-gray-700 font-medium">
-                    <CheckCircle2 className="text-[#E65C00]" size={20} /> Certificación de puntos de red.
-                  </li>
-                  <li className="flex items-center gap-3 text-gray-700 font-medium">
-                    <CheckCircle2 className="text-[#E65C00]" size={20} /> Empalmes de fibra óptica (Fusión).
-                  </li>
-                  <li className="flex items-center gap-3 text-gray-700 font-medium">
-                    <CheckCircle2 className="text-[#E65C00]" size={20} /> Despliegue de redes GPON y Wireless.
-                  </li>
-                </ul>
-              </div>
-
-              {/* Visual (Derecha) - Simulando un esquema técnico */}
-              <div className="w-full lg:w-1/2 relative h-[400px] bg-gray-50 rounded-3xl border border-gray-200 overflow-hidden group">
-                {/* Cuadrícula de ingeniería */}
-                <div className="absolute inset-0 bg-[linear-gradient(#e5e7eb_1px,transparent_1px),linear-gradient(90deg,#e5e7eb_1px,transparent_1px)] bg-[size:20px_20px] opacity-50"></div>
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-64 h-64 bg-blue-500/10 rounded-full blur-3xl group-hover:bg-blue-500/20 transition-all duration-700"></div>
-                  <Network className="text-blue-600 relative z-10 group-hover:scale-110 transition-transform duration-700 drop-shadow-2xl" size={120} strokeWidth={1} />
+                <div className="space-y-4 pt-6 border-t border-gray-100">
+                  <div className="flex items-start gap-3">
+                    <Check className="text-gray-950 mt-1 shrink-0" size={18} />
+                    <p className="text-sm text-gray-700 font-bold">Certificación de puntos de red (Fluke Networks).</p>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <Check className="text-gray-950 mt-1 shrink-0" size={18} />
+                    <p className="text-sm text-gray-700 font-bold">Empalmes de fibra óptica por fusión de alta precisión.</p>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <Check className="text-gray-950 mt-1 shrink-0" size={18} />
+                    <p className="text-sm text-gray-700 font-bold">Despliegue de redes LAN/WAN, GPON y Wireless de alta densidad.</p>
+                  </div>
                 </div>
               </div>
 
+              {/* COLUMNA DERECHA (Servicios 2 y 3 Apilados) */}
+              <div className="flex flex-col gap-8">
+                
+                {/* SERVICIO 2: Data Center */}
+                <div className="bg-white p-10 md:p-12 border border-gray-200 shadow-sm hover:shadow-md transition-shadow flex-1">
+                  <div className="w-12 h-12 bg-gray-100 rounded-none flex items-center justify-center mb-6 border border-gray-200">
+                    <Server className="text-gray-950" size={24} strokeWidth={1.5} />
+                  </div>
+                  <h3 className="text-2xl font-black text-gray-950 tracking-tight mb-3">
+                    Centros de Datos y Racks
+                  </h3>
+                  <p className="text-sm text-gray-600 leading-relaxed mb-6 font-medium">
+                    Centralización y protección de su información crítica. Instalamos gabinetes de comunicaciones, servidores físicos y sistemas de energía ininterrumpida (UPS).
+                  </p>
+                  <ul className="space-y-2">
+                    <li className="flex items-center gap-2 text-sm text-gray-700 font-bold"><Check size={16} className="text-gray-400"/> Peinado y ordenamiento de Patch Panels.</li>
+                    <li className="flex items-center gap-2 text-sm text-gray-700 font-bold"><Check size={16} className="text-gray-400"/> Virtualización de servidores operativos.</li>
+                  </ul>
+                </div>
+
+                {/* SERVICIO 3: Ciberseguridad */}
+                <div className="bg-gray-950 p-10 md:p-12 border border-gray-800 shadow-sm hover:shadow-md transition-shadow flex-1">
+                  <div className="w-12 h-12 bg-gray-800 rounded-none flex items-center justify-center mb-6">
+                    <ShieldCheck className="text-white" size={24} strokeWidth={1.5} />
+                  </div>
+                  <h3 className="text-2xl font-black text-white tracking-tight mb-3">
+                    Seguridad y Soporte TI
+                  </h3>
+                  <p className="text-sm text-gray-400 leading-relaxed mb-6 font-medium">
+                    Implementamos firewalls perimetrales y políticas de acceso restrictivo. Brindamos soporte técnico Help Desk para mantener la operatividad de sus usuarios.
+                  </p>
+                  <ul className="space-y-2">
+                    <li className="flex items-center gap-2 text-sm text-gray-300 font-bold"><Check size={16} className="text-gray-600"/> Configuración de Firewalls Corporativos.</li>
+                    <li className="flex items-center gap-2 text-sm text-gray-300 font-bold"><Check size={16} className="text-gray-600"/> Mantenimiento preventivo y correctivo.</li>
+                  </ul>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        {/* 4. BLOQUE DE METODOLOGÍA (Proceso de Trabajo B2B) */}
+        <section className="py-24 bg-white border-b border-gray-200">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl font-black text-gray-950 tracking-tight mb-4">Metodología de Implementación</h2>
+              <p className="text-lg text-gray-600 font-medium">Cómo abordamos cada proyecto para garantizar resultados precisos.</p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 divide-y md:divide-y-0 md:divide-x divide-gray-200">
+              <div className="p-6 md:p-8 text-center md:text-left">
+                <FileText className="text-gray-300 mb-6 mx-auto md:mx-0" size={40} strokeWidth={1} />
+                <h4 className="text-xl font-bold text-gray-950 mb-3">1. Levantamiento</h4>
+                <p className="text-sm text-gray-600 font-medium leading-relaxed">Auditoría en sitio. Evaluamos planos, infraestructura actual y necesidades reales de ancho de banda y seguridad de su empresa.</p>
+              </div>
+              <div className="p-6 md:p-8 text-center md:text-left">
+                <Wrench className="text-gray-300 mb-6 mx-auto md:mx-0" size={40} strokeWidth={1} />
+                <h4 className="text-xl font-bold text-gray-950 mb-3">2. Ejecución</h4>
+                <p className="text-sm text-gray-600 font-medium leading-relaxed">Instalación bajo cronograma estricto. Uso de materiales normados y mano de obra calificada para evitar interrupciones operativas.</p>
+              </div>
+              <div className="p-6 md:p-8 text-center md:text-left">
+                <ShieldCheck className="text-gray-300 mb-6 mx-auto md:mx-0" size={40} strokeWidth={1} />
+                <h4 className="text-xl font-bold text-gray-950 mb-3">3. Certificación</h4>
+                <p className="text-sm text-gray-600 font-medium leading-relaxed">Pruebas de estrés y certificación de puntos. Entrega de dossier de calidad, planos As-Built y garantías documentadas.</p>
+              </div>
             </div>
           </div>
         </section>
 
-        {/* SERVICIO 2: VISUAL IZQUIERDA / TEXTO DERECHA (INVERTIDO) */}
-        <section className="py-24 border-b border-gray-100 bg-gray-50 relative overflow-hidden">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6">
-            <div className="flex flex-col lg:flex-row-reverse items-center gap-16">
-              
-              {/* Contenido (Derecha) */}
-              <div className="w-full lg:w-1/2 space-y-8">
-                <div className="w-16 h-16 bg-orange-50 rounded-2xl flex items-center justify-center border border-orange-100 shadow-sm">
-                  <Server className="text-[#E65C00]" size={32} />
-                </div>
-                <h2 className="text-4xl font-extrabold text-gray-900 tracking-tight">
-                  Centro de Datos y Servidores
-                </h2>
-                <p className="text-lg text-gray-600 leading-relaxed">
-                  Centralizamos tu información. Armamos e instalamos gabinetes de comunicaciones (Racks), configuramos servidores físicos y desplegamos sistemas de almacenamiento masivo y respaldos automatizados.
-                </p>
-                <ul className="space-y-3">
-                  <li className="flex items-center gap-3 text-gray-700 font-medium">
-                    <CheckCircle2 className="text-blue-600" size={20} /> Ordenamiento de Racks (Patch Panels).
-                  </li>
-                  <li className="flex items-center gap-3 text-gray-700 font-medium">
-                    <CheckCircle2 className="text-blue-600" size={20} /> Virtualización de servidores (Proxmox/VMware).
-                  </li>
-                  <li className="flex items-center gap-3 text-gray-700 font-medium">
-                    <CheckCircle2 className="text-blue-600" size={20} /> Sistemas de refrigeración y UPS.
-                  </li>
-                </ul>
-              </div>
-
-              {/* Visual (Izquierda) */}
-              <div className="w-full lg:w-1/2 relative h-[400px] bg-white rounded-3xl border border-gray-200 overflow-hidden shadow-sm group">
-                <div className="absolute inset-0 bg-[linear-gradient(#e5e7eb_1px,transparent_1px),linear-gradient(90deg,#e5e7eb_1px,transparent_1px)] bg-[size:20px_20px] opacity-50"></div>
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-64 h-64 bg-orange-500/10 rounded-full blur-3xl group-hover:bg-orange-500/20 transition-all duration-700"></div>
-                  <Server className="text-[#E65C00] relative z-10 group-hover:scale-110 transition-transform duration-700 drop-shadow-2xl" size={120} strokeWidth={1} />
-                </div>
-              </div>
-
+        {/* 5. CALL TO ACTION FINAL (Barra Inferior de Acción) */}
+        <section className="bg-gray-50 py-16 border-b border-gray-200">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 flex flex-col md:flex-row items-center justify-between gap-8">
+            <div>
+              <h2 className="text-2xl font-black text-gray-950 tracking-tight mb-2">Inicie la optimización de su red hoy.</h2>
+              <p className="text-gray-600 font-medium">Agende una visita técnica o solicite una cotización preliminar.</p>
             </div>
-          </div>
-        </section>
-
-        {/* SERVICIO 3: TEXTO IZQUIERDA / VISUAL DERECHA */}
-        <section className="py-24 bg-white relative overflow-hidden">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6">
-            <div className="flex flex-col lg:flex-row items-center gap-16">
-              
-              {/* Contenido (Izquierda) */}
-              <div className="w-full lg:w-1/2 space-y-8">
-                <div className="w-16 h-16 bg-gray-900 rounded-2xl flex items-center justify-center shadow-sm">
-                  <ShieldCheck className="text-white" size={32} />
-                </div>
-                <h2 className="text-4xl font-extrabold text-gray-900 tracking-tight">
-                  Ciberseguridad y Soporte TI
-                </h2>
-                <p className="text-lg text-gray-600 leading-relaxed">
-                  Tu red es tan fuerte como su eslabón más débil. Implementamos firewalls perimetrales, políticas de acceso restrictivo y brindamos soporte de mesa de ayuda (Help Desk) para mantener la operatividad de tus usuarios.
-                </p>
-                <ul className="space-y-3">
-                  <li className="flex items-center gap-3 text-gray-700 font-medium">
-                    <CheckCircle2 className="text-gray-900" size={20} /> Configuración de Firewalls (Fortinet/MikroTik).
-                  </li>
-                  <li className="flex items-center gap-3 text-gray-700 font-medium">
-                    <CheckCircle2 className="text-gray-900" size={20} /> Auditoría de vulnerabilidades en la red local.
-                  </li>
-                  <li className="flex items-center gap-3 text-gray-700 font-medium">
-                    <CheckCircle2 className="text-gray-900" size={20} /> Mantenimiento preventivo de hardware.
-                  </li>
-                </ul>
-              </div>
-
-              {/* Visual (Derecha) */}
-              <div className="w-full lg:w-1/2 relative h-[400px] bg-gray-950 rounded-3xl overflow-hidden shadow-2xl group">
-                {/* Estilo oscuro tipo terminal */}
-                <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:20px_20px]"></div>
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-64 h-64 bg-emerald-500/10 rounded-full blur-3xl group-hover:bg-emerald-500/20 transition-all duration-700"></div>
-                  <ShieldCheck className="text-emerald-400 relative z-10 group-hover:scale-110 transition-transform duration-700 drop-shadow-[0_0_30px_rgba(52,211,153,0.3)]" size={120} strokeWidth={1} />
-                </div>
-              </div>
-
-            </div>
-          </div>
-        </section>
-
-        {/* CALL TO ACTION FINAL */}
-        <section className="py-20 bg-[#1A73E8]">
-          <div className="max-w-4xl mx-auto px-4 text-center">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-8">¿Listo para modernizar tu infraestructura?</h2>
-            <Link href="/contacto" className="inline-flex items-center justify-center gap-3 bg-white text-[#1A73E8] px-8 py-4 rounded-lg font-bold text-lg hover:bg-gray-50 transition-all shadow-xl active:scale-95 group">
-              Solicitar Cotización <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
+            <Link 
+              href="/contacto" 
+              className="w-full md:w-auto flex items-center justify-center gap-2 bg-gray-950 text-white px-8 py-4 font-bold tracking-widest uppercase hover:bg-gray-800 transition-colors shrink-0"
+            >
+              Contactar a Ingeniería <ArrowRight size={18} />
             </Link>
           </div>
         </section>
