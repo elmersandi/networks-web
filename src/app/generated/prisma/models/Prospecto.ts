@@ -27,10 +27,13 @@ export type AggregateProspecto = {
 export type ProspectoMinAggregateOutputType = {
   id: string | null
   nombre: string | null
+  empresa: string | null
+  ruc: string | null
   email: string | null
   telefono: string | null
+  requerimiento: string | null
   mensaje: string | null
-  estado: string | null
+  estado: $Enums.EstadoProspecto | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -38,10 +41,13 @@ export type ProspectoMinAggregateOutputType = {
 export type ProspectoMaxAggregateOutputType = {
   id: string | null
   nombre: string | null
+  empresa: string | null
+  ruc: string | null
   email: string | null
   telefono: string | null
+  requerimiento: string | null
   mensaje: string | null
-  estado: string | null
+  estado: $Enums.EstadoProspecto | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -49,8 +55,11 @@ export type ProspectoMaxAggregateOutputType = {
 export type ProspectoCountAggregateOutputType = {
   id: number
   nombre: number
+  empresa: number
+  ruc: number
   email: number
   telefono: number
+  requerimiento: number
   mensaje: number
   estado: number
   createdAt: number
@@ -62,8 +71,11 @@ export type ProspectoCountAggregateOutputType = {
 export type ProspectoMinAggregateInputType = {
   id?: true
   nombre?: true
+  empresa?: true
+  ruc?: true
   email?: true
   telefono?: true
+  requerimiento?: true
   mensaje?: true
   estado?: true
   createdAt?: true
@@ -73,8 +85,11 @@ export type ProspectoMinAggregateInputType = {
 export type ProspectoMaxAggregateInputType = {
   id?: true
   nombre?: true
+  empresa?: true
+  ruc?: true
   email?: true
   telefono?: true
+  requerimiento?: true
   mensaje?: true
   estado?: true
   createdAt?: true
@@ -84,8 +99,11 @@ export type ProspectoMaxAggregateInputType = {
 export type ProspectoCountAggregateInputType = {
   id?: true
   nombre?: true
+  empresa?: true
+  ruc?: true
   email?: true
   telefono?: true
+  requerimiento?: true
   mensaje?: true
   estado?: true
   createdAt?: true
@@ -168,10 +186,13 @@ export type ProspectoGroupByArgs<ExtArgs extends runtime.Types.Extensions.Intern
 export type ProspectoGroupByOutputType = {
   id: string
   nombre: string
+  empresa: string | null
+  ruc: string | null
   email: string
-  telefono: string | null
+  telefono: string
+  requerimiento: string
   mensaje: string | null
-  estado: string
+  estado: $Enums.EstadoProspecto
   createdAt: Date
   updatedAt: Date
   _count: ProspectoCountAggregateOutputType | null
@@ -200,10 +221,13 @@ export type ProspectoWhereInput = {
   NOT?: Prisma.ProspectoWhereInput | Prisma.ProspectoWhereInput[]
   id?: Prisma.StringFilter<"Prospecto"> | string
   nombre?: Prisma.StringFilter<"Prospecto"> | string
+  empresa?: Prisma.StringNullableFilter<"Prospecto"> | string | null
+  ruc?: Prisma.StringNullableFilter<"Prospecto"> | string | null
   email?: Prisma.StringFilter<"Prospecto"> | string
-  telefono?: Prisma.StringNullableFilter<"Prospecto"> | string | null
+  telefono?: Prisma.StringFilter<"Prospecto"> | string
+  requerimiento?: Prisma.StringFilter<"Prospecto"> | string
   mensaje?: Prisma.StringNullableFilter<"Prospecto"> | string | null
-  estado?: Prisma.StringFilter<"Prospecto"> | string
+  estado?: Prisma.EnumEstadoProspectoFilter<"Prospecto"> | $Enums.EstadoProspecto
   createdAt?: Prisma.DateTimeFilter<"Prospecto"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Prospecto"> | Date | string
 }
@@ -211,8 +235,11 @@ export type ProspectoWhereInput = {
 export type ProspectoOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   nombre?: Prisma.SortOrder
+  empresa?: Prisma.SortOrderInput | Prisma.SortOrder
+  ruc?: Prisma.SortOrderInput | Prisma.SortOrder
   email?: Prisma.SortOrder
-  telefono?: Prisma.SortOrderInput | Prisma.SortOrder
+  telefono?: Prisma.SortOrder
+  requerimiento?: Prisma.SortOrder
   mensaje?: Prisma.SortOrderInput | Prisma.SortOrder
   estado?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -225,10 +252,13 @@ export type ProspectoWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.ProspectoWhereInput[]
   NOT?: Prisma.ProspectoWhereInput | Prisma.ProspectoWhereInput[]
   nombre?: Prisma.StringFilter<"Prospecto"> | string
+  empresa?: Prisma.StringNullableFilter<"Prospecto"> | string | null
+  ruc?: Prisma.StringNullableFilter<"Prospecto"> | string | null
   email?: Prisma.StringFilter<"Prospecto"> | string
-  telefono?: Prisma.StringNullableFilter<"Prospecto"> | string | null
+  telefono?: Prisma.StringFilter<"Prospecto"> | string
+  requerimiento?: Prisma.StringFilter<"Prospecto"> | string
   mensaje?: Prisma.StringNullableFilter<"Prospecto"> | string | null
-  estado?: Prisma.StringFilter<"Prospecto"> | string
+  estado?: Prisma.EnumEstadoProspectoFilter<"Prospecto"> | $Enums.EstadoProspecto
   createdAt?: Prisma.DateTimeFilter<"Prospecto"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Prospecto"> | Date | string
 }, "id">
@@ -236,8 +266,11 @@ export type ProspectoWhereUniqueInput = Prisma.AtLeast<{
 export type ProspectoOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   nombre?: Prisma.SortOrder
+  empresa?: Prisma.SortOrderInput | Prisma.SortOrder
+  ruc?: Prisma.SortOrderInput | Prisma.SortOrder
   email?: Prisma.SortOrder
-  telefono?: Prisma.SortOrderInput | Prisma.SortOrder
+  telefono?: Prisma.SortOrder
+  requerimiento?: Prisma.SortOrder
   mensaje?: Prisma.SortOrderInput | Prisma.SortOrder
   estado?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -253,10 +286,13 @@ export type ProspectoScalarWhereWithAggregatesInput = {
   NOT?: Prisma.ProspectoScalarWhereWithAggregatesInput | Prisma.ProspectoScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"Prospecto"> | string
   nombre?: Prisma.StringWithAggregatesFilter<"Prospecto"> | string
+  empresa?: Prisma.StringNullableWithAggregatesFilter<"Prospecto"> | string | null
+  ruc?: Prisma.StringNullableWithAggregatesFilter<"Prospecto"> | string | null
   email?: Prisma.StringWithAggregatesFilter<"Prospecto"> | string
-  telefono?: Prisma.StringNullableWithAggregatesFilter<"Prospecto"> | string | null
+  telefono?: Prisma.StringWithAggregatesFilter<"Prospecto"> | string
+  requerimiento?: Prisma.StringWithAggregatesFilter<"Prospecto"> | string
   mensaje?: Prisma.StringNullableWithAggregatesFilter<"Prospecto"> | string | null
-  estado?: Prisma.StringWithAggregatesFilter<"Prospecto"> | string
+  estado?: Prisma.EnumEstadoProspectoWithAggregatesFilter<"Prospecto"> | $Enums.EstadoProspecto
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Prospecto"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Prospecto"> | Date | string
 }
@@ -264,10 +300,13 @@ export type ProspectoScalarWhereWithAggregatesInput = {
 export type ProspectoCreateInput = {
   id?: string
   nombre: string
+  empresa?: string | null
+  ruc?: string | null
   email: string
-  telefono?: string | null
+  telefono: string
+  requerimiento: string
   mensaje?: string | null
-  estado?: string
+  estado?: $Enums.EstadoProspecto
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -275,10 +314,13 @@ export type ProspectoCreateInput = {
 export type ProspectoUncheckedCreateInput = {
   id?: string
   nombre: string
+  empresa?: string | null
+  ruc?: string | null
   email: string
-  telefono?: string | null
+  telefono: string
+  requerimiento: string
   mensaje?: string | null
-  estado?: string
+  estado?: $Enums.EstadoProspecto
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -286,10 +328,13 @@ export type ProspectoUncheckedCreateInput = {
 export type ProspectoUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   nombre?: Prisma.StringFieldUpdateOperationsInput | string
+  empresa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  ruc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   email?: Prisma.StringFieldUpdateOperationsInput | string
-  telefono?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  telefono?: Prisma.StringFieldUpdateOperationsInput | string
+  requerimiento?: Prisma.StringFieldUpdateOperationsInput | string
   mensaje?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  estado?: Prisma.StringFieldUpdateOperationsInput | string
+  estado?: Prisma.EnumEstadoProspectoFieldUpdateOperationsInput | $Enums.EstadoProspecto
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -297,10 +342,13 @@ export type ProspectoUpdateInput = {
 export type ProspectoUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   nombre?: Prisma.StringFieldUpdateOperationsInput | string
+  empresa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  ruc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   email?: Prisma.StringFieldUpdateOperationsInput | string
-  telefono?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  telefono?: Prisma.StringFieldUpdateOperationsInput | string
+  requerimiento?: Prisma.StringFieldUpdateOperationsInput | string
   mensaje?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  estado?: Prisma.StringFieldUpdateOperationsInput | string
+  estado?: Prisma.EnumEstadoProspectoFieldUpdateOperationsInput | $Enums.EstadoProspecto
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -308,10 +356,13 @@ export type ProspectoUncheckedUpdateInput = {
 export type ProspectoCreateManyInput = {
   id?: string
   nombre: string
+  empresa?: string | null
+  ruc?: string | null
   email: string
-  telefono?: string | null
+  telefono: string
+  requerimiento: string
   mensaje?: string | null
-  estado?: string
+  estado?: $Enums.EstadoProspecto
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -319,10 +370,13 @@ export type ProspectoCreateManyInput = {
 export type ProspectoUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   nombre?: Prisma.StringFieldUpdateOperationsInput | string
+  empresa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  ruc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   email?: Prisma.StringFieldUpdateOperationsInput | string
-  telefono?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  telefono?: Prisma.StringFieldUpdateOperationsInput | string
+  requerimiento?: Prisma.StringFieldUpdateOperationsInput | string
   mensaje?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  estado?: Prisma.StringFieldUpdateOperationsInput | string
+  estado?: Prisma.EnumEstadoProspectoFieldUpdateOperationsInput | $Enums.EstadoProspecto
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -330,10 +384,13 @@ export type ProspectoUpdateManyMutationInput = {
 export type ProspectoUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   nombre?: Prisma.StringFieldUpdateOperationsInput | string
+  empresa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  ruc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   email?: Prisma.StringFieldUpdateOperationsInput | string
-  telefono?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  telefono?: Prisma.StringFieldUpdateOperationsInput | string
+  requerimiento?: Prisma.StringFieldUpdateOperationsInput | string
   mensaje?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  estado?: Prisma.StringFieldUpdateOperationsInput | string
+  estado?: Prisma.EnumEstadoProspectoFieldUpdateOperationsInput | $Enums.EstadoProspecto
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -341,8 +398,11 @@ export type ProspectoUncheckedUpdateManyInput = {
 export type ProspectoCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   nombre?: Prisma.SortOrder
+  empresa?: Prisma.SortOrder
+  ruc?: Prisma.SortOrder
   email?: Prisma.SortOrder
   telefono?: Prisma.SortOrder
+  requerimiento?: Prisma.SortOrder
   mensaje?: Prisma.SortOrder
   estado?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -352,8 +412,11 @@ export type ProspectoCountOrderByAggregateInput = {
 export type ProspectoMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   nombre?: Prisma.SortOrder
+  empresa?: Prisma.SortOrder
+  ruc?: Prisma.SortOrder
   email?: Prisma.SortOrder
   telefono?: Prisma.SortOrder
+  requerimiento?: Prisma.SortOrder
   mensaje?: Prisma.SortOrder
   estado?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -363,12 +426,19 @@ export type ProspectoMaxOrderByAggregateInput = {
 export type ProspectoMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   nombre?: Prisma.SortOrder
+  empresa?: Prisma.SortOrder
+  ruc?: Prisma.SortOrder
   email?: Prisma.SortOrder
   telefono?: Prisma.SortOrder
+  requerimiento?: Prisma.SortOrder
   mensaje?: Prisma.SortOrder
   estado?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+}
+
+export type EnumEstadoProspectoFieldUpdateOperationsInput = {
+  set?: $Enums.EstadoProspecto
 }
 
 
@@ -376,8 +446,11 @@ export type ProspectoMinOrderByAggregateInput = {
 export type ProspectoSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   nombre?: boolean
+  empresa?: boolean
+  ruc?: boolean
   email?: boolean
   telefono?: boolean
+  requerimiento?: boolean
   mensaje?: boolean
   estado?: boolean
   createdAt?: boolean
@@ -387,8 +460,11 @@ export type ProspectoSelect<ExtArgs extends runtime.Types.Extensions.InternalArg
 export type ProspectoSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   nombre?: boolean
+  empresa?: boolean
+  ruc?: boolean
   email?: boolean
   telefono?: boolean
+  requerimiento?: boolean
   mensaje?: boolean
   estado?: boolean
   createdAt?: boolean
@@ -398,8 +474,11 @@ export type ProspectoSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ext
 export type ProspectoSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   nombre?: boolean
+  empresa?: boolean
+  ruc?: boolean
   email?: boolean
   telefono?: boolean
+  requerimiento?: boolean
   mensaje?: boolean
   estado?: boolean
   createdAt?: boolean
@@ -409,15 +488,18 @@ export type ProspectoSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ext
 export type ProspectoSelectScalar = {
   id?: boolean
   nombre?: boolean
+  empresa?: boolean
+  ruc?: boolean
   email?: boolean
   telefono?: boolean
+  requerimiento?: boolean
   mensaje?: boolean
   estado?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type ProspectoOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "nombre" | "email" | "telefono" | "mensaje" | "estado" | "createdAt" | "updatedAt", ExtArgs["result"]["prospecto"]>
+export type ProspectoOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "nombre" | "empresa" | "ruc" | "email" | "telefono" | "requerimiento" | "mensaje" | "estado" | "createdAt" | "updatedAt", ExtArgs["result"]["prospecto"]>
 
 export type $ProspectoPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Prospecto"
@@ -425,10 +507,13 @@ export type $ProspectoPayload<ExtArgs extends runtime.Types.Extensions.InternalA
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     nombre: string
+    empresa: string | null
+    ruc: string | null
     email: string
-    telefono: string | null
+    telefono: string
+    requerimiento: string
     mensaje: string | null
-    estado: string
+    estado: $Enums.EstadoProspecto
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["prospecto"]>
@@ -856,10 +941,13 @@ export interface Prisma__ProspectoClient<T, Null = never, ExtArgs extends runtim
 export interface ProspectoFieldRefs {
   readonly id: Prisma.FieldRef<"Prospecto", 'String'>
   readonly nombre: Prisma.FieldRef<"Prospecto", 'String'>
+  readonly empresa: Prisma.FieldRef<"Prospecto", 'String'>
+  readonly ruc: Prisma.FieldRef<"Prospecto", 'String'>
   readonly email: Prisma.FieldRef<"Prospecto", 'String'>
   readonly telefono: Prisma.FieldRef<"Prospecto", 'String'>
+  readonly requerimiento: Prisma.FieldRef<"Prospecto", 'String'>
   readonly mensaje: Prisma.FieldRef<"Prospecto", 'String'>
-  readonly estado: Prisma.FieldRef<"Prospecto", 'String'>
+  readonly estado: Prisma.FieldRef<"Prospecto", 'EstadoProspecto'>
   readonly createdAt: Prisma.FieldRef<"Prospecto", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Prospecto", 'DateTime'>
 }

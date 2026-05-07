@@ -1,6 +1,6 @@
 // Archivo: src/app/api/productos/route.ts
 import { NextResponse } from 'next/server';
-import prisma from '../../../lib/prisma'; // Usamos tu nuevo super cerebro de Prisma
+import prisma from '@/src/lib/prisma';
 
 export async function GET() {
   try {
@@ -17,13 +17,35 @@ export async function GET() {
 export async function POST(request: Request) {
   try {
     const body = await request.json();
+    const stock = Number(body.stock);
+    const precio = Number(body.precio);
+
+    if (!body.sku || !body.nombre || !body.descripcion || !body.categoriaId) {
+      return NextResponse.json(
+        { error: "Faltan campos obligatorios: sku, nombre, descripcion, categoriaId" },
+        { status: 400 }
+      );
+    }
+
+    if (Number.isNaN(stock) || Number.isNaN(precio)) {
+      return NextResponse.json(
+        { error: "Los campos stock y precio deben ser numericos" },
+        { status: 400 }
+      );
+    }
+
     const nuevoProducto = await prisma.producto.create({
       data: {
+        sku: String(body.sku),
         nombre: body.nombre,
         descripcion: body.descripcion,
-        marca: body.marca,
-        stock: parseInt(body.stock),
+        marca: body.marca ?? null,
+        precio,
+        stock,
         categoriaId: body.categoriaId,
+        modelo: body.modelo ?? null,
+        imagenUrl: body.imagenUrl ?? null,
+        isActivo: typeof body.isActivo === "boolean" ? body.isActivo : true,
       }
     });
     return NextResponse.json(nuevoProducto);

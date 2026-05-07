@@ -1,19 +1,45 @@
-import { PrismaClient } from "../app/generated/prisma/client";
+// Archivo: src/lib/prisma.ts
+import { PrismaClient } from "@/src/app/generated/prisma/client";
 import { PrismaPg } from "@prisma/adapter-pg";
+import { Pool } from "pg";
 
-// ¡Magia pura! El adaptador ahora toma la URL directamente
-const adapter = new PrismaPg({
-  connectionString: process.env.DATABASE_URL!,
-});
+/**
+ * Definimos la interfaz para el objeto global.
+ * Usamos tipos específicos de las librerías instaladas.
+ */
+interface GlobalPrisma {
+  prisma: PrismaClient | undefined;
+  prismaPool: Pool | undefined;
+}
 
-const globalForPrisma = global as unknown as { prisma: PrismaClient };
+const globalForPrisma = globalThis as unknown as GlobalPrisma;
 
-const prisma =
-  globalForPrisma.prisma ||
-  new PrismaClient({
-    adapter,
+// Instanciamos el Pool de conexiones
+const pool =
+  globalForPrisma.prismaPool ??
+  new Pool({
+    connectionString: process.env.DATABASE_URL,
   });
 
-if (process.env.NODE_ENV !== "production") globalForPrisma.prisma = prisma;
+type PrismaPgPoolArg = ConstructorParameters<typeof PrismaPg>[0];
+
+/**
+ * @prisma/adapter-pg trae su propio árbol de tipos para `pg`, que puede no
+ * coincidir 1:1 con `@types/pg` del proyecto. Convertimos al tipo exacto que
+ * declara el constructor del adaptador para mantener tipado estricto.
+ */
+const adapter = new PrismaPg(pool as unknown as PrismaPgPoolArg);
+
+export const prisma =
+  globalForPrisma.prisma ??
+  new PrismaClient({
+    adapter,
+    log: process.env.NODE_ENV === "development" ? ["query", "error", "warn"] : ["error"],
+  });
+
+if (process.env.NODE_ENV !== "production") {
+  globalForPrisma.prisma = prisma;
+  globalForPrisma.prismaPool = pool;
+}
 
 export default prisma;

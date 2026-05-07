@@ -8,9 +8,12 @@
  *
  * 🟢 You can import this file directly.
  */
-export type * from './models/User'
+export type * from './models/Usuario'
+export type * from './models/CodigoVerificacion'
 export type * from './models/Categoria'
 export type * from './models/Producto'
+export type * from './models/Pedido'
 export type * from './models/Servicio'
 export type * from './models/Prospecto'
+export type * from './models/Notificacion'
 export type * from './commonInputTypes'

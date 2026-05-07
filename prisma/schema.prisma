@@ -6,24 +6,89 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  // ¡Cero URL aquí! Ya la maneja el config.
+  // Tu config de base de datos
 }
 
 // ==========================================
-// MÓDULO DE SEGURIDAD
+// ENUMS (Listas de valores cerrados)
 // ==========================================
-model User {
+enum Role {
+  ADMIN
+  VENDEDOR
+  SOPORTE
+}
+
+enum EstadoAcceso {
+  PENDIENTE
+  APROBADO
+  BLOQUEADO
+}
+
+enum EstadoProspecto {
+  NUEVO
+  CONTACTADO
+  COTIZADO
+  CERRADO
+}
+
+enum EstadoPedido {
+  PENDIENTE
+  CONFIRMADO
+  CANCELADO
+}
+
+// ==========================================
+// MÓDULO DE SEGURIDAD Y PERFIL DE USUARIO
+// ==========================================
+model Usuario {
+  id            String       @id @default(cuid())
+  dni           String       @unique
+  nombre        String
+  email         String       @unique
+  telefono      String       
+  password      String       
+  rol           Role         @default(VENDEDOR)
+  
+  // --- NUEVOS CAMPOS PARA PERFIL Y PERSONALIZACIÓN ---
+  imagen        String?      // URL de la foto de perfil (avatar)
+  portada       String?      // URL de la foto de portada (estilo LinkedIn)
+  bio           String?      @db.Text // Descripción breve del cargo o persona
+  
+  // --- PREFERENCIAS DE INTERFAZ Y ALERTAS ---
+  temaOscuro    Boolean      @default(false) // Control para el "Dark Mode"
+  recibirEmail  Boolean      @default(true)  // Alertas al correo
+  recibirWA     Boolean      @default(false) // Alertas por WhatsApp (futuro)
+  
+  // Controles de acceso
+  isVerificado  Boolean      @default(false) 
+  estadoAcceso  EstadoAcceso @default(PENDIENTE) 
+  
+  createdAt     DateTime     @default(now())
+  updatedAt     DateTime     @updatedAt
+  
+  // La recuperación de claves:
+  resetToken       String?   @unique // El código secreto que viaja en la URL
+  resetTokenExpiry DateTime?         // Fecha límite (ej: 1 hora para usar el código)
+
+  // Relación con las notificaciones
+  notificaciones Notificacion[]
+
+}
+
+// ==========================================
+// TABLA PARA CÓDIGOS OTP (Verificación y Recuperar Clave)
+// ==========================================
+model CodigoVerificacion {
   id        String   @id @default(cuid())
-  name      String?
-  email     String   @unique
-  password  String   
-  role      String   @default("ADMIN") 
+  email     String
+  codigo    String   
+  expiraEn  DateTime 
   createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-}
 
+  @@unique([email, codigo])
+}
 // ==========================================
-// MÓDULO DE INVENTARIO B2B
+// MÓDULO DE INVENTARIO B2B (Hardware)
 // ==========================================
 model Categoria {
   id          String     @id @default(cuid())
@@ -36,13 +101,17 @@ model Categoria {
 }
 
 model Producto {
-  id          String    @id @default(cuid())
+  id          String   @id @default(cuid())
+  sku         String   @unique // CÓDIGO DEL PRODUCTO (Importantísimo)
   nombre      String
-  descripcion String    @db.Text
+  modelo      String?  // Ej: "Cámara Domo PTZ Hikvision"
+  descripcion String   @db.Text
   marca       String?
-  stock       Int       @default(0)
-  imagenUrl   String?
-  isActivo    Boolean   @default(true) 
+  precio      Float    // PRECIO UNITARIO (Para calcular el carrito)
+  stock       Int      @default(0)
+  imagenPrincipal String?  // Para la foto principal del catálogo
+  galeria         String[] // URLs para las demás fotos
+  isActivo    Boolean  @default(true) 
 
   categoriaId String
   categoria   Categoria @relation(fields: [categoriaId], references: [id])
@@ -52,23 +121,65 @@ model Producto {
 }
 
 // ==========================================
-// MÓDULO DE PORTAFOLIO Y VENTAS
+// MÓDULO DE VENTAS DIRECTAS (Carrito -> WhatsApp)
+// ==========================================
+model Pedido {
+  id            String       @id @default(cuid())
+  clienteNombre String
+  telefonoWa    String       // Número de WhatsApp del cliente
+  empresa       String?      // Si es una compra B2B
+  total         Float        // Suma total a pagar
+  estado        EstadoPedido @default(PENDIENTE)
+  
+  // Guardamos los items del carrito en un JSON para hacerlo rápido y flexible
+  // Estructura: [{ codigo: "SKU-1", nombre: "Camara", cantidad: 2, precio: 150 }]
+  detalles      Json         
+
+  createdAt     DateTime     @default(now())
+  updatedAt     DateTime     @updatedAt
+}
+
+// ==========================================
+// MÓDULO DE SERVICIOS Y COTIZACIONES (Prospectos)
 // ==========================================
 model Servicio {
   id          String   @id @default(cuid())
   nombre      String
-  descripcion String?
+  slug        String   @unique // Para URLs limpias como /servicios/fibra-optica
+  descripcion String   @db.Text
+  portada         String?  // Imagen principal del servicio
+  galeria         String[] // URLs para mostrar trabajos realizados
+  isActivo    Boolean  @default(true)
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 }
 
 model Prospecto {
+  id             String          @id @default(cuid())
+  nombre         String
+  empresa        String?         // Clave para negocios B2B
+  ruc            String?         
+  email          String
+  telefono       String
+  requerimiento  String          // Qué servicio le interesa
+  mensaje        String?         @db.Text
+  estado         EstadoProspecto @default(NUEVO) 
+  createdAt      DateTime        @default(now())
+  updatedAt      DateTime        @updatedAt
+}
+
+model Notificacion {
   id        String   @id @default(cuid())
-  nombre    String
-  email     String
-  telefono  String?
-  mensaje   String?
-  estado    String   @default("Nuevo") // Estados: Nuevo, Contactado, Cerrado
+  usuarioId String
+  usuario   Usuario  @relation(fields: [usuarioId], references: [id], onDelete: Cascade)
+  
+  titulo    String   // Ej: "Nueva Cotización de Empresa X"
+  mensaje   String   // Ej: "Revisa el panel para ver los detalles de los servicios solicitados."
+  leido     Boolean  @default(false)
+  
+  // Para saber de qué trata y a dónde enviar al usuario al hacer clic
+  tipo      String   // Ej: 'COTIZACION', 'VENTA', 'SOPORTE', 'SISTEMA'
+  enlace    String?  // Ej: '/admin/prospectos/123'
+  
   createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
 }

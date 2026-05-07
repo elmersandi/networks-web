@@ -1,8 +1,17 @@
-// Archivo: src/components/Footer.tsx
+'use client'; // <-- 1. Agregamos esto para poder leer la ruta
+
 import Link from "next/link";
+import { usePathname } from "next/navigation"; // <-- 2. Importamos el hook
 import { MapPin, Phone, Mail } from "lucide-react";
 
 export default function Footer() {
+  const pathname = usePathname(); // <-- 3. Leemos en qué página estamos
+
+  // 4. LA CONDICIÓN: Si la ruta empieza con "/admin", no mostramos nada
+  if (pathname?.startsWith('/admin')) {
+    return null;
+  }
+
   return (
     <footer className="bg-[#0a0a0a] text-gray-400 py-12 md:py-16 border-t border-gray-900">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">

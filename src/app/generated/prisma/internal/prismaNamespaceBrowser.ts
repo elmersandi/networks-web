@@ -51,11 +51,14 @@ export const AnyNull = runtime.AnyNull
 
 
 export const ModelName = {
-  User: 'User',
+  Usuario: 'Usuario',
+  CodigoVerificacion: 'CodigoVerificacion',
   Categoria: 'Categoria',
   Producto: 'Producto',
+  Pedido: 'Pedido',
   Servicio: 'Servicio',
-  Prospecto: 'Prospecto'
+  Prospecto: 'Prospecto',
+  Notificacion: 'Notificacion'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -74,17 +77,40 @@ export const TransactionIsolationLevel = runtime.makeStrictEnum({
 export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel]
 
 
-export const UserScalarFieldEnum = {
+export const UsuarioScalarFieldEnum = {
   id: 'id',
-  name: 'name',
+  dni: 'dni',
+  nombre: 'nombre',
   email: 'email',
+  telefono: 'telefono',
   password: 'password',
-  role: 'role',
+  rol: 'rol',
+  imagen: 'imagen',
+  portada: 'portada',
+  bio: 'bio',
+  temaOscuro: 'temaOscuro',
+  recibirEmail: 'recibirEmail',
+  recibirWA: 'recibirWA',
+  isVerificado: 'isVerificado',
+  estadoAcceso: 'estadoAcceso',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  resetToken: 'resetToken',
+  resetTokenExpiry: 'resetTokenExpiry'
 } as const
 
-export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
+export type UsuarioScalarFieldEnum = (typeof UsuarioScalarFieldEnum)[keyof typeof UsuarioScalarFieldEnum]
+
+
+export const CodigoVerificacionScalarFieldEnum = {
+  id: 'id',
+  email: 'email',
+  codigo: 'codigo',
+  expiraEn: 'expiraEn',
+  createdAt: 'createdAt'
+} as const
+
+export type CodigoVerificacionScalarFieldEnum = (typeof CodigoVerificacionScalarFieldEnum)[keyof typeof CodigoVerificacionScalarFieldEnum]
 
 
 export const CategoriaScalarFieldEnum = {
@@ -101,11 +127,15 @@ export type CategoriaScalarFieldEnum = (typeof CategoriaScalarFieldEnum)[keyof t
 
 export const ProductoScalarFieldEnum = {
   id: 'id',
+  sku: 'sku',
   nombre: 'nombre',
+  modelo: 'modelo',
   descripcion: 'descripcion',
   marca: 'marca',
+  precio: 'precio',
   stock: 'stock',
-  imagenUrl: 'imagenUrl',
+  imagenPrincipal: 'imagenPrincipal',
+  galeria: 'galeria',
   isActivo: 'isActivo',
   categoriaId: 'categoriaId',
   createdAt: 'createdAt',
@@ -115,10 +145,29 @@ export const ProductoScalarFieldEnum = {
 export type ProductoScalarFieldEnum = (typeof ProductoScalarFieldEnum)[keyof typeof ProductoScalarFieldEnum]
 
 
+export const PedidoScalarFieldEnum = {
+  id: 'id',
+  clienteNombre: 'clienteNombre',
+  telefonoWa: 'telefonoWa',
+  empresa: 'empresa',
+  total: 'total',
+  estado: 'estado',
+  detalles: 'detalles',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type PedidoScalarFieldEnum = (typeof PedidoScalarFieldEnum)[keyof typeof PedidoScalarFieldEnum]
+
+
 export const ServicioScalarFieldEnum = {
   id: 'id',
   nombre: 'nombre',
+  slug: 'slug',
   descripcion: 'descripcion',
+  portada: 'portada',
+  galeria: 'galeria',
+  isActivo: 'isActivo',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -129,8 +178,11 @@ export type ServicioScalarFieldEnum = (typeof ServicioScalarFieldEnum)[keyof typ
 export const ProspectoScalarFieldEnum = {
   id: 'id',
   nombre: 'nombre',
+  empresa: 'empresa',
+  ruc: 'ruc',
   email: 'email',
   telefono: 'telefono',
+  requerimiento: 'requerimiento',
   mensaje: 'mensaje',
   estado: 'estado',
   createdAt: 'createdAt',
@@ -140,12 +192,33 @@ export const ProspectoScalarFieldEnum = {
 export type ProspectoScalarFieldEnum = (typeof ProspectoScalarFieldEnum)[keyof typeof ProspectoScalarFieldEnum]
 
 
+export const NotificacionScalarFieldEnum = {
+  id: 'id',
+  usuarioId: 'usuarioId',
+  titulo: 'titulo',
+  mensaje: 'mensaje',
+  leido: 'leido',
+  tipo: 'tipo',
+  enlace: 'enlace',
+  createdAt: 'createdAt'
+} as const
+
+export type NotificacionScalarFieldEnum = (typeof NotificacionScalarFieldEnum)[keyof typeof NotificacionScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
 } as const
 
 export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
+
+
+export const JsonNullValueInput = {
+  JsonNull: JsonNull
+} as const
+
+export type JsonNullValueInput = (typeof JsonNullValueInput)[keyof typeof JsonNullValueInput]
 
 
 export const QueryMode = {
@@ -162,4 +235,13 @@ export const NullsOrder = {
 } as const
 
 export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
+
+
+export const JsonNullValueFilter = {
+  DbNull: DbNull,
+  JsonNull: JsonNull,
+  AnyNull: AnyNull
+} as const
+
+export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter]
 

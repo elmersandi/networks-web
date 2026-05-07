@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import prisma from '../../../lib/prisma';
+import prisma from '@/src/lib/prisma';
 
 export async function GET() {
   try {
@@ -13,10 +13,20 @@ export async function GET() {
 export async function POST(request: Request) {
   try {
     const body = await request.json();
+    if (!body.nombre || !body.slug || !body.descripcion) {
+      return NextResponse.json(
+        { error: "Faltan campos obligatorios: nombre, slug, descripcion" },
+        { status: 400 }
+      );
+    }
+
     const nuevo = await prisma.servicio.create({
       data: {
         nombre: body.nombre,
+        slug: body.slug,
         descripcion: body.descripcion,
+        imagenUrl: body.imagenUrl ?? null,
+        isActivo: typeof body.isActivo === "boolean" ? body.isActivo : true,
       }
     });
     return NextResponse.json(nuevo);

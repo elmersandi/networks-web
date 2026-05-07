@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import prisma from '../../../lib/prisma';
+import prisma from '@/src/lib/prisma';
 
 // 1. Función para LEER las categorías (GET)
 export async function GET() {

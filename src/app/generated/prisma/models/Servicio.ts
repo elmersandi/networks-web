@@ -27,7 +27,10 @@ export type AggregateServicio = {
 export type ServicioMinAggregateOutputType = {
   id: string | null
   nombre: string | null
+  slug: string | null
   descripcion: string | null
+  portada: string | null
+  isActivo: boolean | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -35,7 +38,10 @@ export type ServicioMinAggregateOutputType = {
 export type ServicioMaxAggregateOutputType = {
   id: string | null
   nombre: string | null
+  slug: string | null
   descripcion: string | null
+  portada: string | null
+  isActivo: boolean | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -43,7 +49,11 @@ export type ServicioMaxAggregateOutputType = {
 export type ServicioCountAggregateOutputType = {
   id: number
   nombre: number
+  slug: number
   descripcion: number
+  portada: number
+  galeria: number
+  isActivo: number
   createdAt: number
   updatedAt: number
   _all: number
@@ -53,7 +63,10 @@ export type ServicioCountAggregateOutputType = {
 export type ServicioMinAggregateInputType = {
   id?: true
   nombre?: true
+  slug?: true
   descripcion?: true
+  portada?: true
+  isActivo?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -61,7 +74,10 @@ export type ServicioMinAggregateInputType = {
 export type ServicioMaxAggregateInputType = {
   id?: true
   nombre?: true
+  slug?: true
   descripcion?: true
+  portada?: true
+  isActivo?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -69,7 +85,11 @@ export type ServicioMaxAggregateInputType = {
 export type ServicioCountAggregateInputType = {
   id?: true
   nombre?: true
+  slug?: true
   descripcion?: true
+  portada?: true
+  galeria?: true
+  isActivo?: true
   createdAt?: true
   updatedAt?: true
   _all?: true
@@ -150,7 +170,11 @@ export type ServicioGroupByArgs<ExtArgs extends runtime.Types.Extensions.Interna
 export type ServicioGroupByOutputType = {
   id: string
   nombre: string
-  descripcion: string | null
+  slug: string
+  descripcion: string
+  portada: string | null
+  galeria: string[]
+  isActivo: boolean
   createdAt: Date
   updatedAt: Date
   _count: ServicioCountAggregateOutputType | null
@@ -179,7 +203,11 @@ export type ServicioWhereInput = {
   NOT?: Prisma.ServicioWhereInput | Prisma.ServicioWhereInput[]
   id?: Prisma.StringFilter<"Servicio"> | string
   nombre?: Prisma.StringFilter<"Servicio"> | string
-  descripcion?: Prisma.StringNullableFilter<"Servicio"> | string | null
+  slug?: Prisma.StringFilter<"Servicio"> | string
+  descripcion?: Prisma.StringFilter<"Servicio"> | string
+  portada?: Prisma.StringNullableFilter<"Servicio"> | string | null
+  galeria?: Prisma.StringNullableListFilter<"Servicio">
+  isActivo?: Prisma.BoolFilter<"Servicio"> | boolean
   createdAt?: Prisma.DateTimeFilter<"Servicio"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Servicio"> | Date | string
 }
@@ -187,26 +215,38 @@ export type ServicioWhereInput = {
 export type ServicioOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   nombre?: Prisma.SortOrder
-  descripcion?: Prisma.SortOrderInput | Prisma.SortOrder
+  slug?: Prisma.SortOrder
+  descripcion?: Prisma.SortOrder
+  portada?: Prisma.SortOrderInput | Prisma.SortOrder
+  galeria?: Prisma.SortOrder
+  isActivo?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
 
 export type ServicioWhereUniqueInput = Prisma.AtLeast<{
   id?: string
+  slug?: string
   AND?: Prisma.ServicioWhereInput | Prisma.ServicioWhereInput[]
   OR?: Prisma.ServicioWhereInput[]
   NOT?: Prisma.ServicioWhereInput | Prisma.ServicioWhereInput[]
   nombre?: Prisma.StringFilter<"Servicio"> | string
-  descripcion?: Prisma.StringNullableFilter<"Servicio"> | string | null
+  descripcion?: Prisma.StringFilter<"Servicio"> | string
+  portada?: Prisma.StringNullableFilter<"Servicio"> | string | null
+  galeria?: Prisma.StringNullableListFilter<"Servicio">
+  isActivo?: Prisma.BoolFilter<"Servicio"> | boolean
   createdAt?: Prisma.DateTimeFilter<"Servicio"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Servicio"> | Date | string
-}, "id">
+}, "id" | "slug">
 
 export type ServicioOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   nombre?: Prisma.SortOrder
-  descripcion?: Prisma.SortOrderInput | Prisma.SortOrder
+  slug?: Prisma.SortOrder
+  descripcion?: Prisma.SortOrder
+  portada?: Prisma.SortOrderInput | Prisma.SortOrder
+  galeria?: Prisma.SortOrder
+  isActivo?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.ServicioCountOrderByAggregateInput
@@ -220,7 +260,11 @@ export type ServicioScalarWhereWithAggregatesInput = {
   NOT?: Prisma.ServicioScalarWhereWithAggregatesInput | Prisma.ServicioScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"Servicio"> | string
   nombre?: Prisma.StringWithAggregatesFilter<"Servicio"> | string
-  descripcion?: Prisma.StringNullableWithAggregatesFilter<"Servicio"> | string | null
+  slug?: Prisma.StringWithAggregatesFilter<"Servicio"> | string
+  descripcion?: Prisma.StringWithAggregatesFilter<"Servicio"> | string
+  portada?: Prisma.StringNullableWithAggregatesFilter<"Servicio"> | string | null
+  galeria?: Prisma.StringNullableListFilter<"Servicio">
+  isActivo?: Prisma.BoolWithAggregatesFilter<"Servicio"> | boolean
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Servicio"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Servicio"> | Date | string
 }
@@ -228,7 +272,11 @@ export type ServicioScalarWhereWithAggregatesInput = {
 export type ServicioCreateInput = {
   id?: string
   nombre: string
-  descripcion?: string | null
+  slug: string
+  descripcion: string
+  portada?: string | null
+  galeria?: Prisma.ServicioCreategaleriaInput | string[]
+  isActivo?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -236,7 +284,11 @@ export type ServicioCreateInput = {
 export type ServicioUncheckedCreateInput = {
   id?: string
   nombre: string
-  descripcion?: string | null
+  slug: string
+  descripcion: string
+  portada?: string | null
+  galeria?: Prisma.ServicioCreategaleriaInput | string[]
+  isActivo?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -244,7 +296,11 @@ export type ServicioUncheckedCreateInput = {
 export type ServicioUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   nombre?: Prisma.StringFieldUpdateOperationsInput | string
-  descripcion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  descripcion?: Prisma.StringFieldUpdateOperationsInput | string
+  portada?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  galeria?: Prisma.ServicioUpdategaleriaInput | string[]
+  isActivo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -252,7 +308,11 @@ export type ServicioUpdateInput = {
 export type ServicioUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   nombre?: Prisma.StringFieldUpdateOperationsInput | string
-  descripcion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  descripcion?: Prisma.StringFieldUpdateOperationsInput | string
+  portada?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  galeria?: Prisma.ServicioUpdategaleriaInput | string[]
+  isActivo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -260,7 +320,11 @@ export type ServicioUncheckedUpdateInput = {
 export type ServicioCreateManyInput = {
   id?: string
   nombre: string
-  descripcion?: string | null
+  slug: string
+  descripcion: string
+  portada?: string | null
+  galeria?: Prisma.ServicioCreategaleriaInput | string[]
+  isActivo?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -268,7 +332,11 @@ export type ServicioCreateManyInput = {
 export type ServicioUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   nombre?: Prisma.StringFieldUpdateOperationsInput | string
-  descripcion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  descripcion?: Prisma.StringFieldUpdateOperationsInput | string
+  portada?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  galeria?: Prisma.ServicioUpdategaleriaInput | string[]
+  isActivo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -276,7 +344,11 @@ export type ServicioUpdateManyMutationInput = {
 export type ServicioUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   nombre?: Prisma.StringFieldUpdateOperationsInput | string
-  descripcion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  descripcion?: Prisma.StringFieldUpdateOperationsInput | string
+  portada?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  galeria?: Prisma.ServicioUpdategaleriaInput | string[]
+  isActivo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -284,7 +356,11 @@ export type ServicioUncheckedUpdateManyInput = {
 export type ServicioCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   nombre?: Prisma.SortOrder
+  slug?: Prisma.SortOrder
   descripcion?: Prisma.SortOrder
+  portada?: Prisma.SortOrder
+  galeria?: Prisma.SortOrder
+  isActivo?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -292,7 +368,10 @@ export type ServicioCountOrderByAggregateInput = {
 export type ServicioMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   nombre?: Prisma.SortOrder
+  slug?: Prisma.SortOrder
   descripcion?: Prisma.SortOrder
+  portada?: Prisma.SortOrder
+  isActivo?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -300,9 +379,21 @@ export type ServicioMaxOrderByAggregateInput = {
 export type ServicioMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   nombre?: Prisma.SortOrder
+  slug?: Prisma.SortOrder
   descripcion?: Prisma.SortOrder
+  portada?: Prisma.SortOrder
+  isActivo?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+}
+
+export type ServicioCreategaleriaInput = {
+  set: string[]
+}
+
+export type ServicioUpdategaleriaInput = {
+  set?: string[]
+  push?: string | string[]
 }
 
 
@@ -310,7 +401,11 @@ export type ServicioMinOrderByAggregateInput = {
 export type ServicioSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   nombre?: boolean
+  slug?: boolean
   descripcion?: boolean
+  portada?: boolean
+  galeria?: boolean
+  isActivo?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }, ExtArgs["result"]["servicio"]>
@@ -318,7 +413,11 @@ export type ServicioSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
 export type ServicioSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   nombre?: boolean
+  slug?: boolean
   descripcion?: boolean
+  portada?: boolean
+  galeria?: boolean
+  isActivo?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }, ExtArgs["result"]["servicio"]>
@@ -326,7 +425,11 @@ export type ServicioSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exte
 export type ServicioSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   nombre?: boolean
+  slug?: boolean
   descripcion?: boolean
+  portada?: boolean
+  galeria?: boolean
+  isActivo?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }, ExtArgs["result"]["servicio"]>
@@ -334,12 +437,16 @@ export type ServicioSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
 export type ServicioSelectScalar = {
   id?: boolean
   nombre?: boolean
+  slug?: boolean
   descripcion?: boolean
+  portada?: boolean
+  galeria?: boolean
+  isActivo?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type ServicioOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "nombre" | "descripcion" | "createdAt" | "updatedAt", ExtArgs["result"]["servicio"]>
+export type ServicioOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "nombre" | "slug" | "descripcion" | "portada" | "galeria" | "isActivo" | "createdAt" | "updatedAt", ExtArgs["result"]["servicio"]>
 
 export type $ServicioPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Servicio"
@@ -347,7 +454,11 @@ export type $ServicioPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     nombre: string
-    descripcion: string | null
+    slug: string
+    descripcion: string
+    portada: string | null
+    galeria: string[]
+    isActivo: boolean
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["servicio"]>
@@ -775,7 +886,11 @@ export interface Prisma__ServicioClient<T, Null = never, ExtArgs extends runtime
 export interface ServicioFieldRefs {
   readonly id: Prisma.FieldRef<"Servicio", 'String'>
   readonly nombre: Prisma.FieldRef<"Servicio", 'String'>
+  readonly slug: Prisma.FieldRef<"Servicio", 'String'>
   readonly descripcion: Prisma.FieldRef<"Servicio", 'String'>
+  readonly portada: Prisma.FieldRef<"Servicio", 'String'>
+  readonly galeria: Prisma.FieldRef<"Servicio", 'String[]'>
+  readonly isActivo: Prisma.FieldRef<"Servicio", 'Boolean'>
   readonly createdAt: Prisma.FieldRef<"Servicio", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Servicio", 'DateTime'>
 }
