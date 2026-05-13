@@ -115,16 +115,16 @@ export default function PerfilPage() {
   const iniciales = datos.nombre ? datos.nombre.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase() : "NP";
   const esAdmin = datos.rol === 'ADMIN';
 
-  if (cargando) return <div className="p-8 text-center text-slate-500 dark:text-neutral-500 font-bold">Cargando tu información...</div>;
+  if (cargando) return <div className="p-8 text-center text-[#64748B] dark:text-[#9CA3AF] font-bold">Cargando tu información...</div>;
 
   return (
-    <div className="max-w-4xl mx-auto space-y-6 pb-10 transition-colors">
+    <div className="admin-b2b max-w-4xl mx-auto space-y-6 pb-10 transition-colors">
 
       {/* BLOQUE 5: INTERFAZ - PORTADA Y AVATAR */}
       {/* Contenedor principal superior que maneja la visualizacion y carga de las dos imagenes principales */}
-      <div className="bg-white dark:bg-neutral-900 rounded-3xl shadow-sm border border-slate-200 dark:border-neutral-800 overflow-hidden transition-colors">
+      <div className="bg-[#FFFFFF] dark:bg-[#121212] rounded-xl border border-[#E2E8F0] dark:border-[#262626] overflow-hidden transition-colors">
 
-        <div className="h-44 bg-gradient-to-r from-blue-600 to-indigo-700 relative">
+        <div className="h-44 bg-[#121212] dark:bg-[#121212] relative">
           {datos.portada && (
             <Image
               src={datos.portada}
@@ -146,7 +146,7 @@ export default function PerfilPage() {
         <div className="px-8 pb-8">
           <div className="relative -mt-16 mb-4 flex items-end justify-between">
             <div className="relative">
-              <div className="w-32 h-32 rounded-full border-4 border-white dark:border-neutral-900 bg-slate-200 overflow-hidden shadow-lg flex items-center justify-center text-4xl font-bold text-blue-600 bg-blue-50 relative">
+              <div className="w-32 h-32 rounded-full border-4 border-white dark:border-[#121212] bg-[#F8FAFC] dark:bg-[#121212] overflow-hidden flex items-center justify-center text-4xl font-bold text-[#1D4ED8] relative">
                 {datos.imagen ? (
                   <Image src={datos.imagen} alt="Foto de perfil" fill className="object-cover" />
                 ) : (
@@ -164,14 +164,14 @@ export default function PerfilPage() {
             </div>
 
             <div className="flex items-center gap-3 mb-2">
-              <span className="px-4 py-1.5 bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-400 rounded-full text-xs font-bold border border-blue-100 dark:border-blue-900/50 flex items-center gap-1">
+              <span className="px-4 py-1.5 bg-blue-50 dark:bg-[#121212] text-[#1D4ED8] rounded-full text-xs font-semibold border border-[#E2E8F0] dark:border-[#262626] flex items-center gap-1">
                 <ShieldCheck size={14} /> Acceso Verificado
               </span>
             </div>
           </div>
 
-          <h1 className="text-2xl font-bold text-slate-900 dark:text-white">{datos.nombre}</h1>
-          <p className="text-slate-500 dark:text-neutral-400 font-medium text-sm mt-1">Rol en sistema: <span className="font-bold text-blue-600 dark:text-blue-500">{datos.rol}</span> • Networks Perú</p>
+          <h1 className="text-2xl font-bold text-[#0F172A] dark:text-[#F3F4F6]">{datos.nombre}</h1>
+          <p className="text-[#64748B] dark:text-[#9CA3AF] font-medium text-sm mt-1">Rol en sistema: <span className="font-bold text-[#1D4ED8]">{datos.rol}</span> • Networks Perú</p>
         </div>
       </div>
 

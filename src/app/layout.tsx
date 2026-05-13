@@ -1,4 +1,3 @@
-// Archivo: src/app/layout.tsx
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
@@ -14,8 +13,8 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "Networks & Systems Perú",
-  description: "Infraestructura y telecomunicaciones corporativas en Loreto.",
+  title: "Networks & Systems Perú | Plataforma B2B",
+  description: "Infraestructura y telecomunicaciones corporativas de alto nivel.",
 };
 
 export default function RootLayout({
@@ -41,14 +40,12 @@ export default function RootLayout({
           }}
         />
       </head>
-      {/* 
-        1. Inyectamos la variable poppins.variable
-        2. Usamos font-sans para que Tailwind la agarre
-        3. antialiased hace que las letras se vean mucho más nítidas y premium 
+      {/* NOTA DEL INGENIERO: Se quitaron los 'bg-gray' fijos de aquí.
+        Ahora la clase 'font-sans' activa Poppins, y globals.css maneja los colores mate.
       */}
-      <body className={`${poppins.variable} font-sans antialiased bg-gray-50 text-gray-900`}>
+      <body className={`${poppins.variable} font-sans antialiased`}>
         
-        {/* Este contenedor empuja el Footer hacia abajo */}
+        {/* Este contenedor empuja el Footer siempre hacia abajo */}
         <div className="min-h-screen flex flex-col">
           
           {/* Aquí se renderizan todas tus páginas (Web y Admin) */}
@@ -56,7 +53,7 @@ export default function RootLayout({
             {children}
           </main>
 
-          {/* AQUÍ ESTÁ EL FOOTER. Si esto está dentro del layout, sale en toda la web */}
+          {/* AQUÍ ESTÁ EL FOOTER */}
           <Footer />
 
         </div>

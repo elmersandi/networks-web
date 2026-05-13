@@ -41,14 +41,14 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col justify-center items-center bg-slate-50 dark:bg-[#0a0a0a] p-4 transition-colors">
+    <div className="admin-auth-b2b min-h-screen flex flex-col justify-center items-center bg-[#F8FAFC] dark:bg-[#000000] p-4 transition-colors">
 
       {/* TARJETA PRINCIPAL */}
-      <div className="w-full max-w-[420px] bg-white dark:bg-neutral-900 rounded-3xl shadow-xl dark:shadow-2xl dark:shadow-black/50 border border-slate-200 dark:border-neutral-800 p-8 sm:p-10 transition-colors">
+      <div className="b2b-surface w-full max-w-[420px] rounded-2xl p-8 sm:p-10 transition-colors">
 
         {/* LOGO Y TÍTULO */}
         <div className="flex flex-col items-center mb-8">
-          <div className="w-14 h-14 bg-blue-600 rounded-2xl flex items-center justify-center text-white font-black text-2xl mb-4 shadow-lg shadow-blue-600/30">
+          <div className="w-14 h-14 bg-[#1D4ED8] rounded-xl flex items-center justify-center text-white font-black text-2xl mb-4">
             N
           </div>
           <h1 className="text-2xl font-bold text-slate-900 dark:text-white tracking-tight">
@@ -120,7 +120,7 @@ export default function LoginPage() {
           <button
             type="submit"
             disabled={loading || !email || !password}
-            className="w-full flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-bold py-3.5 rounded-xl transition-all shadow-lg shadow-blue-600/20 active:scale-[0.98] disabled:opacity-70 disabled:cursor-not-allowed mt-2"
+            className="b2b-primary w-full flex items-center justify-center gap-2 py-3.5 rounded-md transition-colors active:scale-[0.98] disabled:opacity-70 disabled:cursor-not-allowed mt-2"
           >
             {loading ? (
               <Loader2 size={18} className="animate-spin" />

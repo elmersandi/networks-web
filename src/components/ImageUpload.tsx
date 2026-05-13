@@ -47,7 +47,7 @@ export default function ImageUpload({
           {value.map((url) => (
             <div key={url} className="relative w-[200px] h-[200px] rounded-md overflow-hidden border border-slate-700">
               <div className="z-10 absolute top-2 right-2">
-                <button type="button" onClick={() => onRemove(url)} className="bg-red-500 p-2 rounded-md text-white hover:bg-red-600 transition shadow-md">
+                <button type="button" onClick={() => onRemove(url)} className="bg-[#E02424] p-2 rounded-md text-white hover:bg-red-700 transition-colors">
                   <Trash className="w-4 h-4" />
                 </button>
               </div>
@@ -77,8 +77,8 @@ export default function ImageUpload({
               // MAGIA AQUÍ: Si es avatar, es un círculo pequeñito. Si no, es el botón normal.
               className={
                 isAvatar
-                  ? "bg-blue-600 p-2.5 rounded-full text-white hover:bg-blue-700 transition shadow-lg border-2 border-white flex items-center justify-center absolute bottom-0 right-0"
-                  : "flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition disabled:opacity-50 text-sm shadow-md"
+                  ? "bg-[#1D4ED8] p-2.5 rounded-full text-white hover:bg-[#1E40AF] transition-colors border-2 border-white dark:border-[#121212] flex items-center justify-center absolute bottom-0 right-0"
+                  : "flex items-center gap-2 bg-[#1D4ED8] text-white px-4 py-2 rounded-md hover:bg-[#1E40AF] transition-colors disabled:opacity-50 text-sm"
               }
             >
               {isAvatar ? (

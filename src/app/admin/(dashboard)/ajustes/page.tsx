@@ -58,17 +58,17 @@ export default function AjustesPage() {
   };
 
   return (
-    <div className="max-w-4xl mx-auto space-y-6 pb-12 transition-colors">
+    <div className="admin-b2b max-w-4xl mx-auto space-y-6 pb-12 transition-colors">
       <div className="mb-2">
-        <h1 className="text-2xl font-bold text-slate-900 dark:text-white tracking-tight">Seguridad y Notificaciones</h1>
-        <p className="text-slate-500 dark:text-neutral-400 text-sm mt-1">Administra tus credenciales y canales de comunicación.</p>
+        <h1 className="text-2xl font-bold text-[#0F172A] dark:text-[#F3F4F6] tracking-tight">Seguridad y Notificaciones</h1>
+        <p className="text-[#64748B] dark:text-[#9CA3AF] text-sm mt-1">Administra tus credenciales y canales de comunicación.</p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         
         {/* SEGURIDAD: CAMBIO DE CLAVE */}
-        <div className="bg-white dark:bg-neutral-900 p-8 rounded-3xl shadow-sm border border-slate-200 dark:border-neutral-800 space-y-6 transition-colors">
-          <h2 className="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
+        <div className="bg-[#FFFFFF] dark:bg-[#121212] p-8 rounded-xl border border-[#E2E8F0] dark:border-[#262626] space-y-6 transition-colors">
+          <h2 className="text-lg font-bold text-[#0F172A] dark:text-[#F3F4F6] flex items-center gap-2">
             <KeyRound className="text-blue-600 dark:text-blue-500" size={20} /> Cambio de Contraseña
           </h2>
 
@@ -90,7 +90,7 @@ export default function AjustesPage() {
                   type={showActual ? "text" : "password"} 
                   value={claveActual} onChange={(e) => setClaveActual(e.target.value)} required
                   placeholder="Ingresa tu clave actual" 
-                  className="w-full bg-slate-50 dark:bg-neutral-950 border border-slate-200 dark:border-neutral-800 py-3 pl-4 pr-10 rounded-xl outline-none focus:bg-white dark:focus:bg-neutral-900 focus:border-blue-500 dark:focus:border-blue-500 transition-all text-sm dark:text-white dark:placeholder:text-neutral-600" 
+                  className="w-full bg-[#F8FAFC] dark:bg-[#121212] border border-[#E2E8F0] dark:border-[#262626] py-3 pl-4 pr-10 rounded-md outline-none transition-colors text-sm text-[#0F172A] dark:text-[#F3F4F6] dark:placeholder:text-[#9CA3AF]" 
                 />
                 <button type="button" onClick={() => setShowActual(!showActual)} className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 dark:text-neutral-500 hover:text-slate-600 dark:hover:text-neutral-300">
                   {showActual ? <EyeOff size={18} /> : <Eye size={18} />}
@@ -142,7 +142,7 @@ export default function AjustesPage() {
             <button 
               type="submit" 
               disabled={cargando || !esPasswordValido || !contrasenasCoinciden || !claveActual}
-              className="w-full bg-slate-900 dark:bg-blue-600 text-white font-bold py-3.5 rounded-xl hover:bg-blue-600 dark:hover:bg-blue-500 transition-all text-sm mt-4 disabled:bg-slate-300 dark:disabled:bg-neutral-800 dark:disabled:text-neutral-500 disabled:cursor-not-allowed"
+              className="w-full bg-[#1D4ED8] text-white font-medium py-3.5 rounded-md hover:bg-[#1E40AF] transition-colors text-sm mt-4 disabled:bg-slate-300 dark:disabled:bg-[#121212] dark:disabled:text-[#9CA3AF] disabled:cursor-not-allowed"
             >
               {cargando ? 'Guardando cambios...' : 'Actualizar Seguridad'}
             </button>
@@ -150,8 +150,8 @@ export default function AjustesPage() {
         </div>
 
         {/* CENTRO DE ALERTAS */}
-        <div className="bg-white dark:bg-neutral-900 p-8 rounded-3xl shadow-sm border border-slate-200 dark:border-neutral-800 space-y-6 transition-colors">
-          <h2 className="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
+        <div className="bg-[#FFFFFF] dark:bg-[#121212] p-8 rounded-xl border border-[#E2E8F0] dark:border-[#262626] space-y-6 transition-colors">
+          <h2 className="text-lg font-bold text-[#0F172A] dark:text-[#F3F4F6] flex items-center gap-2">
             <Bell className="text-blue-600 dark:text-blue-500" size={20} /> Centro de Alertas
           </h2>
 

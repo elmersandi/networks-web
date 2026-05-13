@@ -134,9 +134,9 @@ export default function RegistroPage() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 flex flex-col justify-center items-center p-4 py-12 font-sans" style={{ fontFamily: 'var(--font-poppins), sans-serif' }}>
+    <div className="admin-auth-b2b min-h-screen bg-[#F8FAFC] dark:bg-[#000000] flex flex-col justify-center items-center p-4 py-12 font-sans" style={{ fontFamily: 'var(--font-poppins), sans-serif' }}>
       
-      <div className="max-w-xl w-full bg-white rounded-2xl shadow-xl border border-slate-100 overflow-hidden">
+      <div className="b2b-surface max-w-xl w-full rounded-2xl overflow-hidden">
         
         {/* Cabecera */}
         <div className="p-6 border-b border-slate-100 flex items-center justify-between bg-white">
@@ -215,7 +215,7 @@ export default function RegistroPage() {
                 {/* Botón para enviar código */}
                 {!verificado && !codigoEnviado && (
                   <button type="button" onClick={enviarCodigo} disabled={cargandoCodigo || !formData.email}
-                    className="whitespace-nowrap px-4 py-3 bg-slate-900 text-white text-xs font-bold rounded-xl hover:bg-blue-600 transition-colors disabled:bg-slate-300 flex items-center justify-center gap-2">
+                    className="b2b-primary whitespace-nowrap px-4 py-3 text-xs rounded-md transition-colors disabled:bg-slate-300 flex items-center justify-center gap-2">
                     {cargandoCodigo ? 'Enviando...' : <><Send size={14} /> Verificar Correo</>}
                   </button>
                 )}
@@ -233,7 +233,7 @@ export default function RegistroPage() {
                         placeholder="000000" className="w-full pl-9 pr-4 py-3 bg-white border border-slate-200 rounded-xl text-sm font-bold tracking-[0.2em] text-slate-700 outline-none focus:border-blue-500 text-center" />
                     </div>
                     <button type="button" onClick={validarCodigo} disabled={codigoInput.length !== 6}
-                      className="px-6 py-3 bg-blue-600 text-white text-xs font-bold rounded-xl hover:bg-blue-700 transition-colors disabled:bg-blue-300">
+                      className="b2b-primary px-6 py-3 text-xs rounded-md transition-colors disabled:bg-blue-300">
                       Validar
                     </button>
                   </div>
@@ -320,7 +320,7 @@ export default function RegistroPage() {
             <button 
               type="submit" 
               disabled={cargando || !verificado || !esPasswordValido || !contrasenasCoinciden}
-              className="w-full bg-slate-900 text-white font-bold py-3.5 rounded-xl hover:bg-blue-600 transition-colors mt-2 active:scale-95 disabled:bg-slate-300 disabled:cursor-not-allowed flex justify-center items-center gap-2"
+              className="b2b-primary w-full py-3.5 rounded-md transition-colors mt-2 active:scale-95 disabled:bg-slate-300 disabled:cursor-not-allowed flex justify-center items-center gap-2"
             >
               {cargando ? 'Procesando registro...' : 'Enviar Solicitud de Registro'}
             </button>

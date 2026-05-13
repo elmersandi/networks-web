@@ -102,12 +102,13 @@ model Categoria {
 
 model Producto {
   id          String   @id @default(cuid())
-  sku         String   @unique // CÓDIGO DEL PRODUCTO (Importantísimo)
+  sku         String   @unique 
   nombre      String
-  modelo      String?  // Ej: "Cámara Domo PTZ Hikvision"
+  slug        String    @unique
+  modelo      String?  
   descripcion String   @db.Text
   marca       String?
-  precio      Float    // PRECIO UNITARIO (Para calcular el carrito)
+  precio      Float    
   stock       Int      @default(0)
   imagenPrincipal String?  // Para la foto principal del catálogo
   galeria         String[] // URLs para las demás fotos

@@ -88,11 +88,11 @@ export default function NotificationBell() {
       {/* BOTON DE LA CAMPANA */}
       <button 
         onClick={handleToggleMenu}
-        className="relative p-2 text-slate-500 dark:text-neutral-400 hover:bg-slate-100 dark:hover:bg-neutral-800 rounded-full transition-colors focus:outline-none"
+        className="relative p-2 text-[#64748B] dark:text-[#9CA3AF] hover:bg-[#F8FAFC] dark:hover:bg-[#121212] rounded-full transition-colors focus:outline-none"
       >
         <Bell size={20} />
         {unreadCount > 0 && (
-          <span className="absolute top-1 right-1 flex h-4 w-4 items-center justify-center rounded-full bg-red-500 text-[9px] font-bold text-white shadow-sm ring-2 ring-white dark:ring-neutral-950">
+          <span className="absolute top-1 right-1 flex h-4 w-4 items-center justify-center rounded-full bg-[#E02424] text-[9px] font-bold text-white ring-2 ring-white dark:ring-[#121212]">
             {unreadCount > 9 ? '+9' : unreadCount}
           </span>
         )}
@@ -100,9 +100,9 @@ export default function NotificationBell() {
 
       {/* PANEL DESPLEGABLE */}
       {isOpen && (
-        <div className="absolute right-0 mt-2 w-80 sm:w-96 bg-white dark:bg-neutral-900 rounded-2xl shadow-xl border border-slate-200 dark:border-neutral-800 z-50 overflow-hidden">
+        <div className="absolute right-0 mt-2 w-80 sm:w-96 bg-[#FFFFFF] dark:bg-[#121212] rounded-xl border border-[#E2E8F0] dark:border-[#262626] z-50 overflow-hidden">
           
-          <div className="p-4 border-b border-slate-100 dark:border-neutral-800 flex items-center justify-between bg-slate-50 dark:bg-neutral-950">
+          <div className="p-4 border-b border-[#E2E8F0] dark:border-[#262626] flex items-center justify-between bg-[#F8FAFC] dark:bg-[#121212]">
             <h3 className="font-bold text-slate-800 dark:text-white text-sm flex items-center gap-2">
               <Bell size={16} className="text-blue-600" /> Notificaciones
             </h3>
@@ -123,9 +123,9 @@ export default function NotificationBell() {
                     key={notif.id} 
                     href={notif.enlace || '#'}
                     onClick={() => setIsOpen(false)}
-                    className={`flex items-start gap-3 p-4 hover:bg-slate-50 dark:hover:bg-neutral-800/50 transition-colors ${!notif.leido ? 'bg-blue-50/50 dark:bg-blue-900/10' : ''}`}
+                    className={`flex items-start gap-3 p-4 hover:bg-[#F8FAFC] dark:hover:bg-[#121212] transition-colors ${!notif.leido ? 'bg-blue-50 dark:bg-[#121212]' : ''}`}
                   >
-                    <div className="mt-0.5 bg-white dark:bg-neutral-800 p-2 rounded-full shadow-sm border border-slate-100 dark:border-neutral-700">
+                    <div className="mt-0.5 bg-[#FFFFFF] dark:bg-[#121212] p-2 rounded-full border border-[#E2E8F0] dark:border-[#262626]">
                       {getIcono(notif.tipo)}
                     </div>
                     <div>

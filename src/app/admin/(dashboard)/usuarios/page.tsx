@@ -102,26 +102,26 @@ export default function UsuariosPage() {
   };
 
   return (
-    <div className="space-y-8 relative transition-colors">
+    <div className="admin-b2b space-y-8 relative transition-colors">
       
       {/* CABECERA */}
       <div className="flex flex-col sm:flex-row sm:justify-between sm:items-end gap-4">
         <div>
-          <h1 className="text-3xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
+          <h1 className="text-3xl font-bold text-[#0F172A] dark:text-[#F3F4F6] flex items-center gap-2">
             Gestión de Personal
           </h1>
-          <p className="text-slate-500 dark:text-neutral-400 mt-1 text-sm">Administra los accesos, roles y cuentas del equipo.</p>
+          <p className="text-[#64748B] dark:text-[#9CA3AF] mt-1 text-sm">Administra los accesos, roles y cuentas del equipo.</p>
         </div>
-        <button onClick={abrirModalNuevo} className="flex items-center gap-2 bg-blue-600 text-white px-5 py-2.5 rounded-xl font-bold shadow-sm hover:bg-blue-700 transition-all active:scale-95">
+        <button onClick={abrirModalNuevo} className="flex items-center gap-2 bg-[#1D4ED8] text-white px-5 py-2.5 rounded-md font-medium hover:bg-[#1E40AF] transition-colors active:scale-95">
           <Plus size={18} /> Nuevo Integrante
         </button>
       </div>
 
       {/* TABLA PRINCIPAL */}
-      <div className="bg-white dark:bg-neutral-900 rounded-2xl shadow-sm border border-slate-200 dark:border-neutral-800 overflow-hidden transition-colors">
+      <div className="bg-[#FFFFFF] dark:bg-[#121212] rounded-xl border border-[#E2E8F0] dark:border-[#262626] overflow-hidden transition-colors">
         <div className="overflow-x-auto">
-          <table className="w-full text-left text-sm text-slate-600 dark:text-neutral-300">
-            <thead className="bg-slate-50 dark:bg-neutral-950 text-[10px] uppercase tracking-widest font-bold text-slate-500 dark:text-neutral-500 border-b border-slate-200 dark:border-neutral-800">
+          <table className="w-full text-left text-sm text-[#64748B] dark:text-[#9CA3AF]">
+            <thead className="bg-[#F8FAFC] dark:bg-[#121212] text-xs uppercase tracking-wider font-semibold text-[#64748B] dark:text-[#9CA3AF] border-b border-[#E2E8F0] dark:border-[#262626]">
               <tr>
                 <th className="px-6 py-4">Personal</th>
                 <th className="px-6 py-4">Contacto</th>
@@ -131,18 +131,18 @@ export default function UsuariosPage() {
                 <th className="px-6 py-4 text-center">Acciones</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-100 dark:divide-neutral-800">
+            <tbody className="divide-y divide-[#E2E8F0] dark:divide-[#262626]">
               {cargando ? (
                 <tr><td colSpan={6} className="text-center py-12 text-slate-400 dark:text-neutral-600"><Loader2 className="animate-spin mx-auto mb-2" size={24} />Cargando personal...</td></tr>
               ) : usuarios.length === 0 ? (
                 <tr><td colSpan={6} className="text-center py-12 text-slate-400 dark:text-neutral-500">No hay usuarios registrados aún.</td></tr>
               ) : (
                 usuarios.map((user) => (
-                  <tr key={user.id} className="hover:bg-slate-50/50 dark:hover:bg-neutral-800/50 transition-colors">
+                  <tr key={user.id} className="hover:bg-[#F8FAFC] dark:hover:bg-[#121212] transition-colors">
                     
                     {/* PERSONAL */}
                     <td className="px-6 py-4">
-                      <div className="font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                      <div className="font-bold text-[#0F172A] dark:text-[#F3F4F6] flex items-center gap-2">
                         {user.rol === 'ADMIN' && <UserCog size={14} className="text-blue-500"/>}
                         {user.nombre}
                       </div>
@@ -151,16 +151,16 @@ export default function UsuariosPage() {
 
                     {/* CONTACTO */}
                     <td className="px-6 py-4 space-y-1">
-                      <div className="flex items-center gap-2 text-xs hover:text-blue-500 transition-colors"><Mail size={14}/> {user.email}</div>
-                      <div className="flex items-center gap-2 text-xs hover:text-blue-500 transition-colors"><Phone size={14}/> {user.telefono}</div>
+                        <div className="flex items-center gap-2 text-xs hover:text-[#1D4ED8] transition-colors"><Mail size={14}/> {user.email}</div>
+                      <div className="flex items-center gap-2 text-xs hover:text-[#1D4ED8] transition-colors"><Phone size={14}/> {user.telefono}</div>
                     </td>
 
                     {/* VERIFICADO OTP */}
                     <td className="px-6 py-4 text-center">
                       {user.isVerificado ? (
-                        <span className="inline-flex items-center gap-1 text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-900/20 border border-emerald-100 dark:border-emerald-900/50 px-2 py-1 rounded-md text-[10px] font-bold tracking-wider"><ShieldCheck size={14}/> SÍ</span>
+                        <span className="inline-flex items-center gap-1 text-[#16A34A] bg-green-50 dark:bg-[#121212] border border-[#E2E8F0] dark:border-[#262626] px-2 py-1 rounded-md text-[10px] font-semibold tracking-wider"><ShieldCheck size={14}/> SÍ</span>
                       ) : (
-                        <span className="inline-flex items-center gap-1 text-rose-500 dark:text-rose-400 bg-rose-50 dark:bg-rose-900/20 border border-rose-100 dark:border-rose-900/50 px-2 py-1 rounded-md text-[10px] font-bold tracking-wider"><ShieldAlert size={14}/> NO</span>
+                        <span className="inline-flex items-center gap-1 text-[#E02424] bg-red-50 dark:bg-[#121212] border border-[#E2E8F0] dark:border-[#262626] px-2 py-1 rounded-md text-[10px] font-semibold tracking-wider"><ShieldAlert size={14}/> NO</span>
                       )}
                     </td>
 
@@ -169,7 +169,7 @@ export default function UsuariosPage() {
                       <select 
                         value={user.rol}
                         onChange={(e) => actualizarRapido(user.id, user.estadoAcceso, e.target.value)}
-                        className="bg-slate-100 dark:bg-neutral-800 border-none text-xs font-bold text-slate-700 dark:text-neutral-300 rounded-lg focus:ring-2 focus:ring-blue-500 p-2 cursor-pointer outline-none transition-colors"
+                        className="bg-[#F8FAFC] dark:bg-[#121212] border border-[#E2E8F0] dark:border-[#262626] text-xs font-semibold text-[#0F172A] dark:text-[#F3F4F6] rounded-md p-2 cursor-pointer outline-none transition-colors"
                       >
                         <option value="ADMIN">Admin (Total)</option>
                         <option value="VENDEDOR">Vendedor</option>
@@ -179,22 +179,22 @@ export default function UsuariosPage() {
 
                     {/* ESTADO */}
                     <td className="px-6 py-4 text-center">
-                      {user.estadoAcceso === 'APROBADO' && <span className="text-emerald-600 dark:text-emerald-400 font-bold text-[10px] tracking-wider bg-emerald-50 dark:bg-emerald-900/20 px-3 py-1 rounded-full border border-emerald-200 dark:border-emerald-900/50">APROBADO</span>}
-                      {user.estadoAcceso === 'PENDIENTE' && <span className="text-amber-600 dark:text-amber-400 font-bold text-[10px] tracking-wider bg-amber-50 dark:bg-amber-900/20 px-3 py-1 rounded-full border border-amber-200 dark:border-amber-900/50">PENDIENTE</span>}
-                      {user.estadoAcceso === 'BLOQUEADO' && <span className="text-rose-600 dark:text-rose-400 font-bold text-[10px] tracking-wider bg-rose-50 dark:bg-rose-900/20 px-3 py-1 rounded-full border border-rose-200 dark:border-rose-900/50">BLOQUEADO</span>}
+                      {user.estadoAcceso === 'APROBADO' && <span className="text-[#16A34A] font-semibold text-[10px] tracking-wider bg-green-50 dark:bg-[#121212] px-3 py-1 rounded-full border border-[#E2E8F0] dark:border-[#262626]">APROBADO</span>}
+                      {user.estadoAcceso === 'PENDIENTE' && <span className="text-[#F59E0B] font-semibold text-[10px] tracking-wider bg-amber-50 dark:bg-[#121212] px-3 py-1 rounded-full border border-[#E2E8F0] dark:border-[#262626]">PENDIENTE</span>}
+                      {user.estadoAcceso === 'BLOQUEADO' && <span className="text-[#E02424] font-semibold text-[10px] tracking-wider bg-red-50 dark:bg-[#121212] px-3 py-1 rounded-full border border-[#E2E8F0] dark:border-[#262626]">BLOQUEADO</span>}
                     </td>
 
                     {/* ACCIONES */}
                     <td className="px-6 py-4">
                       <div className="flex justify-center gap-1 sm:gap-2">
                         {user.estadoAcceso !== 'APROBADO' && (
-                          <button onClick={() => actualizarRapido(user.id, 'APROBADO', user.rol)} className="p-1.5 text-emerald-600 dark:text-emerald-400 hover:bg-emerald-100 dark:hover:bg-emerald-900/30 rounded-lg transition-colors" title="Aprobar Acceso"><CheckCircle2 size={16} /></button>
+                          <button onClick={() => actualizarRapido(user.id, 'APROBADO', user.rol)} className="p-1.5 text-[#16A34A] hover:bg-green-50 dark:hover:bg-[#121212] rounded-lg transition-colors" title="Aprobar Acceso"><CheckCircle2 size={16} /></button>
                         )}
                         {user.estadoAcceso !== 'BLOQUEADO' && (
-                          <button onClick={() => actualizarRapido(user.id, 'BLOQUEADO', user.rol)} className="p-1.5 text-amber-500 dark:text-amber-400 hover:bg-amber-100 dark:hover:bg-amber-900/30 rounded-lg transition-colors" title="Bloquear"><Ban size={16} /></button>
+                          <button onClick={() => actualizarRapido(user.id, 'BLOQUEADO', user.rol)} className="p-1.5 text-[#F59E0B] hover:bg-amber-50 dark:hover:bg-[#121212] rounded-lg transition-colors" title="Bloquear"><Ban size={16} /></button>
                         )}
-                        <button onClick={() => abrirModalEditar(user)} className="p-1.5 text-blue-600 dark:text-blue-400 hover:bg-blue-100 dark:hover:bg-blue-900/30 rounded-lg transition-colors" title="Editar Datos"><Edit2 size={16} /></button>
-                        <button onClick={() => eliminarUsuario(user.id)} className="p-1.5 text-rose-600 dark:text-rose-400 hover:bg-rose-100 dark:hover:bg-rose-900/30 rounded-lg transition-colors" title="Eliminar Permanente"><Trash2 size={16} /></button>
+                        <button onClick={() => abrirModalEditar(user)} className="p-1.5 text-[#1D4ED8] hover:bg-blue-50 dark:hover:bg-[#121212] rounded-lg transition-colors" title="Editar Datos"><Edit2 size={16} /></button>
+                        <button onClick={() => eliminarUsuario(user.id)} className="p-1.5 text-[#E02424] hover:bg-red-50 dark:hover:bg-[#121212] rounded-lg transition-colors" title="Eliminar Permanente"><Trash2 size={16} /></button>
                       </div>
                     </td>
                   </tr>

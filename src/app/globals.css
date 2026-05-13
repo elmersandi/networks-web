@@ -2,24 +2,129 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/* ==========================================================================
+   1. TOKENS GLOBALES (Directo del Manual de Word)
+   Estos colores ahora se pueden usar como bg-marca, text-peligro, etc.
+========================================================================== */
 @theme {
   --font-sans: var(--font-poppins), sans-serif;
+
+  /* Colores de Acción */
+  --color-marca: #1D4ED8;
+  --color-marca-hover: #1E40AF;
+  --color-peligro: #DC2626;
+  --color-exito: #059669;
+
+  /* Superficies y Bordes (Dark Mode) */
+  --color-dark-bg: #000000;
+  --color-dark-surface: #121212;
+  --color-dark-border: #262626;
+
+  /* Superficies y Bordes (Light Mode) */
+  --color-light-bg: #F8FAFC;
+  --color-light-surface: #FFFFFF;
+  --color-light-border: #E2E8F0;
 }
 
-/* Transiciones globales para que el cambio de color sea suave */
-* {
-  transition-property: background-color, border-color, color;
-  transition-timing-function: ease-in-out;
-  transition-duration: 300ms;
+/* ==========================================================================
+   2. REGLAS BASE Y TIPOGRAFÍA
+========================================================================== */
+@layer base {
+  /* Transiciones premium para cambiar de modo claro a oscuro */
+  * {
+    transition-property: background-color, border-color, color;
+    transition-timing-function: ease-in-out;
+    transition-duration: 300ms;
+  }
+
+  /* Fondo Global Modo Claro */
+  body {
+    @apply bg-light-bg text-slate-600 antialiased selection:bg-marca selection:text-white;
+  }
+
+  /* Fondo Global Modo Oscuro */
+  .dark body {
+    @apply bg-dark-bg text-[#9CA3AF] selection:bg-marca selection:text-white;
+  }
+
+  /* Jerarquía de Títulos (H1 - H6) */
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold tracking-tight text-[#0F172A] dark:text-[#F3F4F6];
+  }
+  
+  h1 { @apply text-3xl md:text-5xl mb-4; }
+  h2 { @apply text-2xl md:text-4xl mb-3; }
+  h3 { @apply text-xl md:text-3xl mb-3; }
+  
+  /* Reset general para inputs en todo el sistema */
+  input:focus, select:focus, textarea:focus {
+    outline: none;
+    @apply border-marca shadow-[0_0_0_1px_#1D4ED8] dark:shadow-none;
+  }
 }
 
-body {
-  background-color: #f8fafc;
-  color: #171717;
+/* ==========================================================================
+   3. COMPONENTES GLOBALES B2B (Botones, Tablas y Paneles)
+========================================================================== */
+@layer components {
+  /* --- Botones --- */
+  .btn-primario {
+    @apply bg-marca text-white font-medium px-5 py-2.5 rounded-md transition-colors hover:bg-marca-hover active:scale-95 cursor-pointer shadow-none border-none;
+  }
+
+  .btn-secundario {
+    @apply bg-transparent font-medium px-5 py-2.5 rounded-md transition-colors border border-light-border dark:border-dark-border text-[#0F172A] dark:text-[#F3F4F6] hover:bg-light-border dark:hover:bg-dark-border cursor-pointer shadow-none;
+  }
+
+  .btn-peligro {
+    @apply bg-peligro text-white font-medium px-5 py-2.5 rounded-md transition-colors hover:bg-red-700 active:scale-95 cursor-pointer shadow-none border-none;
+  }
+
+  /* --- Tablas B2B Universales --- */
+  table {
+    @apply w-full text-left text-sm border-collapse;
+  }
+
+  thead {
+    @apply bg-[#F1F5F9] dark:bg-dark-bg border-b border-light-border dark:border-dark-border;
+  }
+
+  th {
+    @apply px-6 py-4 text-xs uppercase font-semibold tracking-wider text-[#64748B] dark:text-[#9CA3AF];
+  }
+
+  td {
+    @apply px-6 py-4 border-b border-light-border dark:border-dark-border bg-light-surface dark:bg-dark-surface text-[#0F172A] dark:text-[#F3F4F6];
+  }
+
+  tbody tr:hover td {
+    @apply bg-light-bg dark:bg-[#1A1A1A];
+  }
+
+  /* --- Contenedores y Tarjetas --- */
+  .panel-corporativo {
+    @apply bg-light-surface dark:bg-dark-surface border border-light-border dark:border-dark-border rounded-xl shadow-sm dark:shadow-none overflow-hidden;
+  }
 }
 
-/* El fondo puro y elegante para el modo oscuro */
-.dark body {
-  background-color: #0a0a0a !important;
-  color: #ededed !important;
+/* ==========================================================================
+   4. CLASES HEREDADAS DEL SISTEMA ADMIN B2B
+   Mantiene la compatibilidad con los layouts que ya programamos
+========================================================================== */
+@layer components {
+  .admin-b2b, .admin-auth-b2b {
+    @apply text-[#64748B] bg-light-bg dark:text-[#9CA3AF] dark:bg-dark-bg;
+  }
+
+  .admin-b2b h1, .admin-auth-b2b h1 {
+    @apply text-3xl font-bold tracking-tight text-[#0F172A] dark:text-[#F3F4F6];
+  }
+
+  .admin-b2b p, .admin-auth-b2b p {
+    @apply text-[#64748B] dark:text-[#9CA3AF];
+  }
+
+  .admin-b2b .b2b-surface, .admin-auth-b2b .b2b-surface {
+    @apply bg-light-surface border-light-border dark:bg-dark-surface dark:border-dark-border border;
+  }
 }
